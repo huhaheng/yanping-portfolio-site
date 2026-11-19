@@ -64,7 +64,7 @@
   }
 
   function figure(item,source,options={}) {
-    const url=absolute(item.src,source),info=D.images[relative(url)]||{};
+    const url=absolute(item.src,source),info=D.images[relative(url)]||{width:item.width,height:item.height};
     const preview=info.preview?new URL(info.preview,root).href:url.href;
     const fullUrl=options.originalSrc?new URL(options.originalSrc,root).href:url.href;
     const artworkType=/-(wireframe|finished)\./.exec(item.src)?.[1];
@@ -159,10 +159,39 @@
   }
   function homePage() {
     const otherWork={mask:'升级卖点、达人脚本与直播讲解',sun:'产品卖点、销售话术与达人脚本',clean:'产品主张、海报文案与上新文章'};
-    return `<div class="page-home home-direct"><section class="home-intro"><p class="intro-name">孙岩萍 · 作品集</p><h1>内容营销与<br class="mobile-break">新媒体运营</h1><p class="intro-description">9年以上经验，做过护肤品新品内容策划、酷狗音乐新媒体运营，并管理过两名专员。</p><p class="intro-target">求职方向：内容营销经理 / 内容团队组长 · 广州</p><div class="hero-actions">${cta('#/home/selected','查看作品')}${cta('assets/resume.pdf?v=3.0.16','查看简历','text-link')}</div></section><section class="selected-section" id="home-selected" tabindex="-1"><div class="section-heading"><h2>代表项目</h2></div><div class="featured-grid">${featureCard('oil')}${featureCard('kugou')}</div></section><section class="more-section"><div class="section-heading"><h2>其他作品</h2><a class="text-link" href="#/works">全部作品 <span aria-hidden="true">↗</span></a></div><div>${['mask','sun','clean'].map(id=>{const c=V.cases[id];return `<a class="compact-project compact-${id}" href="#/project/${id}"><img src="${esc(asset(c.cover))}" alt="" width="100" height="110" loading="lazy"><span class="compact-copy"><strong>${esc(c.name)}</strong><span>${esc(otherWork[id])}</span></span><span class="project-arrow" aria-hidden="true">↗</span></a>`;}).join('')}</div></section><section class="home-contact" id="about-contact"><div><h2>联系我</h2><p>求职方向：内容营销经理 / 内容团队组长</p></div><a href="mailto:beibiduo@163.com">beibiduo@163.com <span aria-hidden="true">↗</span></a></section></div>`;
+    return `<div class="page-home home-direct"><section class="home-intro"><p class="intro-name">孙岩萍 · 作品集</p><h1>内容营销与<br class="mobile-break">新媒体运营</h1><p class="intro-description">9年以上经验，做过护肤品新品内容策划、酷狗音乐新媒体运营，并管理过两名专员。</p><p class="intro-target">求职方向：内容营销经理 / 内容团队组长 · 广州</p><div class="hero-actions">${cta('#/home/selected','查看作品')}${cta('assets/resume.pdf?v=3.0.16','查看简历','text-link')}</div></section><section class="selected-section" id="home-selected" tabindex="-1"><div class="section-heading"><h2>代表项目</h2></div><div class="featured-grid">${featureCard('oil')}${featureCard('kugou')}</div></section><section class="more-section"><div class="section-heading"><h2>其他作品</h2><a class="text-link" href="#/works">全部作品 <span aria-hidden="true">↗</span></a></div><div>${['mask','sun','clean'].map(id=>{const c=V.cases[id];return `<a class="compact-project compact-${id}" href="#/project/${id}"><img src="${esc(asset(c.cover))}" alt="" width="100" height="110" loading="lazy"><span class="compact-copy"><strong>${esc(c.name)}</strong><span>${esc(otherWork[id])}</span></span><span class="project-arrow" aria-hidden="true">↗</span></a>`;}).join('')}<a class="compact-project compact-text" href="#/works/xiaohongshu"><span class="compact-copy"><strong>胶原炮面膜</strong><span>小红书达人种草</span></span><span class="project-arrow" aria-hidden="true">↗</span></a><a class="compact-project compact-text" href="#/works/videochannel"><span class="compact-copy"><strong>逆时光颜研究院</strong><span>品牌科普视频号从 0 到 1</span></span><span class="project-arrow" aria-hidden="true">↗</span></a></div></section><section class="home-contact" id="about-contact"><div><h2>联系我</h2><p>求职方向：内容营销经理 / 内容团队组长</p></div><a href="mailto:beibiduo@163.com">beibiduo@163.com <span aria-hidden="true">↗</span></a></section></div>`;
+  }
+  function xiaohongshuCase() {
+    return `<section class="about-section works-channel" id="works-xiaohongshu" tabindex="-1">
+      <h2>胶原炮面膜｜小红书达人种草</h2>
+      <p class="channel-role">原生密码 · 达人种草内容策略与脚本策划</p>
+      <div class="responsibility-table">
+        <div><h3>定选题</h3><p>面向 30+ 女性的抗老需求，从日常护肤场景切入，围绕肌肤紧致和胶原护理定选题。</p></div>
+        <div><h3>写 Brief 和脚本</h3><p>撰写达人合作 Brief、图文和视频脚本，用护肤痛点、真人使用过程和体验分享带出卖点。</p></div>
+        <div><h3>审稿与修改</h3><p>参与达人笔记和视频的审核与修改，核对卖点是否准确、讲述是否连贯、产品展示是否符合品牌要求。</p></div>
+      </div>
+    </section>`;
+  }
+  function brandVideoChannelCase() {
+    const screenshots=[
+      {src:'assets/antiaging-channel-overview.webp',alt:'逆时光颜研究院｜账号主页与历史数据',width:1960,height:1156},
+      {src:'assets/antiaging-channel-videos.webp',alt:'逆时光颜研究院｜四条代表视频与互动截图',width:1948,height:1060}
+    ];
+    return `<section class="about-section works-channel" id="works-videochannel" tabindex="-1">
+      <h2>逆时光颜研究院｜视频号从 0 到 1</h2>
+      <p class="channel-role">无添加主义 · 微信视频号</p>
+      <p>我从 0 搭建账号的品牌科普内容，负责选题与原创脚本。围绕抗老主题，用熟龄人物故事、饮食话题和运动场景做选题。</p>
+      <div class="result-metrics channel-metrics" aria-label="账号历史数据">
+        <div class="metric-item"><strong>3.1万+</strong><span>粉丝</span></div>
+        <div class="metric-item"><strong>53</strong><span>条原创视频</span></div>
+        <div class="metric-item"><strong>60万+</strong><span>转发收藏</span></div>
+      </div>
+      <p class="caption">账号历史数据</p>
+      <div class="channel-evidence">${screenshots.map(screenshot=>figure(screenshot,'preview/v3/index.html')).join('')}</div>
+    </section>`;
   }
   function worksPage() {
-    return `<section class="page-works"><p class="eyebrow">PROJECT INDEX / 05</p><div class="section-heading"><h1>从产品价值，<br>到用户参与。</h1><p>产品内容策略、升级沟通、<br>平台运营与团队协作。</p></div><div class="work-index">${V.order.map(id=>{const c=V.cases[id];return `<article class="work-row"><a class="work-row-art" href="#/project/${id}" aria-label="查看${esc(c.name)}案例">${projectArtwork(c)}</a><div class="work-row-copy"><p class="eyebrow">${c.number} / ${esc(c.category)}</p><h2><a href="#/project/${id}">${esc(c.name)}<span aria-hidden="true">↗</span></a></h2><p class="work-row-title">${esc(c.title)}</p><p>${esc(c.short)}</p><p class="caption">我的职责：${esc(c.role)} · ${esc(c.tags.join(' / '))}</p>${cta('#/project/'+id,'查看完整案例','text-link')}</div></article>`;}).join('')}</div></section>${contactBand()}`;
+    return `<section class="page-works"><p class="eyebrow">PROJECT INDEX</p><div class="section-heading"><h1>从产品价值，<br>到用户参与。</h1><p>产品内容策略、升级沟通、<br>平台运营与团队协作。</p></div><div class="work-index">${V.order.map(id=>{const c=V.cases[id];return `<article class="work-row"><a class="work-row-art" href="#/project/${id}" aria-label="查看${esc(c.name)}案例">${projectArtwork(c)}</a><div class="work-row-copy"><p class="eyebrow">${c.number} / ${esc(c.category)}</p><h2><a href="#/project/${id}">${esc(c.name)}<span aria-hidden="true">↗</span></a></h2><p class="work-row-title">${esc(c.title)}</p><p>${esc(c.short)}</p><p class="caption">我的职责：${esc(c.role)} · ${esc(c.tags.join(' / '))}</p>${cta('#/project/'+id,'查看完整案例','text-link')}</div></article>`;}).join('')}</div>${xiaohongshuCase()}${brandVideoChannelCase()}</section>${contactBand()}`;
   }
   function aboutPage() {
     const jobs=[['2024.03—2026.09','广州无添加主义化妆品有限公司','企划（产品内容方向）','负责护肤品产品内容与新品上市传播，完成卖点、长图文、内容结构与视频脚本，协同产品、研发、设计、运营与销售推进交付。'],['2019.06—2024.01','广州酷狗计算机科技有限公司','新媒体运营经理','独立负责微博内容与活动，管理两名专员，统筹多平台内容审核；推动公众号定位调整、视频号从0到1运营与客户端引流合作。'],['2018.02—2019.04','China Marketing Development Center 首尔分部','新媒体运营','参与韩国品牌在中国市场的本地化内容、线上推广及小红书种草项目执行。'],['2017.01—2018.01','上海沪江网教育技术有限公司','新媒体编辑','围绕韩语学习需求、活动及课程推广组织新媒体内容与表达。']];
@@ -267,6 +296,7 @@
   function routeTarget(parts) {
     if(parts[0]==='home'&&parts[1])return document.getElementById('home-selected');
     if(parts[0]==='contact')return document.getElementById('about-contact');
+    if(parts[0]==='works'&&['xiaohongshu','videochannel'].includes(parts[1]))return document.getElementById(`works-${parts[1]}`);
     if(parts[0]==='read'&&parts[2]){
       const requested=slug(parts[2]),anchor=D.reader_anchor_aliases?.[parts[1]]?.[requested]||requested;
       return [...main.querySelectorAll('[data-anchor]')].find(n=>n.dataset.anchor===anchor);

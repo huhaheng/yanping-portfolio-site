@@ -314,3 +314,13 @@
   .product-direct .video-link-card .video-cover{height:118px}
   .product-direct .video-link-copy h3{font-size:16px}
 }
+
+.home-direct .compact-project.compact-text{grid-template-columns:1fr auto}
+.works-channel{scroll-margin-top:24px}
+.works-channel .channel-role{margin:8px 0 22px;color:var(--muted)}
+.channel-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0 6px;max-width:640px}
+.channel-metrics .metric-item>strong{font-size:clamp(26px,4vw,42px)}
+.channel-evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:18px}
+.channel-evidence .work-figure{margin:0}
+.channel-evidence .image-open{height:auto;aspect-ratio:16/9;padding:8px}
+@media(max-width:760px){.channel-evidence{grid-template-columns:1fr}}
