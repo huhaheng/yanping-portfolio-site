@@ -1,12 +1,12 @@
 {
-  "sourceVersion": "3.0.16",
-  "sourceCommit": "0de06c6ea5388bbc8143ca5a79ad5bbb64b44e7b",
+  "sourceVersion": "3.0.19",
+  "sourceCommit": "73d46fc135ffcda2b851ac1afcc0085a667413e8",
   "repository": "yanpingsun/yanping-portfolio-site",
   "branch": "main",
   "entry": "preview/v3/index.html",
-  "verifiedAt": "2026-11-12",
-  "totalFiles": 416,
-  "totalBytes": 184827588,
+  "verifiedAt": "2026-11-20",
+  "totalFiles": 423,
+  "totalBytes": 186087799,
   "checksumType": "Git blob SHA-1 (includes Git blob header; verify with git hash-object)",
   "files": [
     {
@@ -1906,13 +1906,43 @@
     },
     {
       "path": "preview/v3/app.js",
-      "bytes": 47654,
-      "gitBlobSha1": "ea71cc93e536e2859a396fe920766d8df5c2169b"
+      "bytes": 60219,
+      "gitBlobSha1": "d57cfbf38849cb32dbb3ebbc4eff629b9fe64524"
+    },
+    {
+      "path": "preview/v3/assets/antiaging-channel-overview.webp",
+      "bytes": 148442,
+      "gitBlobSha1": "386da2505187c756fc2195d3d9940a67ff4ee00e"
+    },
+    {
+      "path": "preview/v3/assets/antiaging-channel-videos.webp",
+      "bytes": 198810,
+      "gitBlobSha1": "9aff2105db491fd7cab6b728f078cf7bc24f6c4c"
     },
     {
       "path": "preview/v3/assets/archive/resume-user-20261104.pdf",
       "bytes": 172767,
       "gitBlobSha1": "4512f7c73de450eb617fb4f28a68635b3e768265"
+    },
+    {
+      "path": "preview/v3/assets/collagen/budget-cover.webp",
+      "bytes": 191378,
+      "gitBlobSha1": "6c33d96a65a5c9acc7d0c76df421384ce9be257f"
+    },
+    {
+      "path": "preview/v3/assets/collagen/budget-slide-2.webp",
+      "bytes": 314798,
+      "gitBlobSha1": "cd589f7e096967de17749f74974474bea2eb7105"
+    },
+    {
+      "path": "preview/v3/assets/collagen/project-cover.png",
+      "bytes": 194918,
+      "gitBlobSha1": "5460abe6480e2183365bbecfc99e0b18b56f08b4"
+    },
+    {
+      "path": "preview/v3/assets/collagen/review-cover.webp",
+      "bytes": 79284,
+      "gitBlobSha1": "9c6db04f145e0f8869c975882228820e5595958c"
     },
     {
       "path": "preview/v3/assets/cover-clean.webp",
@@ -2050,6 +2080,11 @@
       "gitBlobSha1": "9839e44f1995aad6c0a0ed9aee7982be1b88dd4c"
     },
     {
+      "path": "preview/v3/assets/videochannel-project-cover.png",
+      "bytes": 113965,
+      "gitBlobSha1": "7e1e8146995a2ee094757d003395fd6968b8b211"
+    },
+    {
       "path": "preview/v3/content.js",
       "bytes": 11231,
       "gitBlobSha1": "8811714230ca01b5c99f383a3afbf928cbfdd167"
@@ -2076,8 +2111,8 @@
     },
     {
       "path": "preview/v3/index.html",
-      "bytes": 2822,
-      "gitBlobSha1": "5516b58474fc6dc877c2b91ebff7f18f566e299b"
+      "bytes": 2823,
+      "gitBlobSha1": "1cf5970b0083b21865631bb0b3ffbdb6cf0de2b8"
     },
     {
       "path": "preview/v3/media.js",
@@ -2086,8 +2121,8 @@
     },
     {
       "path": "preview/v3/styles.css",
-      "bytes": 54561,
-      "gitBlobSha1": "e58d6c9e4c25b332f1e011f1e1788be147bd267e"
+      "bytes": 60611,
+      "gitBlobSha1": "301ee705b16eeeadf897c468b5a2f42915530c15"
     }
   ]
 }

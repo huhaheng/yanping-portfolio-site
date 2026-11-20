@@ -1,5 +1,16 @@
 # EdgeOne Pages 部署与新域名
 
+## 最新交接 · 2026-11-20 · 3.0.19
+
+- 协作源码在 `yanpingsun/yanping-portfolio-site` 的 `main`，运行源码提交为 [`73d46fc`](https://github.com/yanpingsun/yanping-portfolio-site/commit/73d46fc135ffcda2b851ac1afcc0085a667413e8)。从完整仓库构建，入口为 `preview/v3/index.html`。
+- GitHub Pages 入口为[作品集 3.0.19](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/)。首页与全部作品共七个案例，包含胶原炮面膜小红书达人种草、逆时光颜研究院视频号和两张新封面。
+- 新案例的页面文案与阅读页在 `preview/v3/app.js`，封面和截图在 `preview/v3/assets/`。可编辑的[胶原炮调研与 Brief 草稿](../../portfolio-content/collagen-xiaohongshu/research-and-draft-brief.docx)保留了 11 月 19 日的公开笔记调研和早期排版提案。现行呈现以 3.0.19 页面为准。
+- 已更新 [ASSET-MANIFEST.json](ASSET-MANIFEST.json)。本地运行 `node tools/build_edgeone.mjs` 校验 423 个源文件，通过后生成 `dist-edgeone/`。已核对构建产物的首页、七个案例、阅读入口和站内资源路径。
+
+`huhaheng` 可按下方「后续代码更新与副本同步」将协作仓库的最新 `main` 同步到 [huhaheng/yanping-portfolio-site](https://github.com/huhaheng/yanping-portfolio-site) 的 `main`，沿用现有 EdgeOne 项目和域名配置。等待 EdgeOne 构建完成后，在 [yanpingsun.cn](https://yanpingsun.cn/) 核对首页、两张新封面、两个新案例、简历和原图。本轮交接前，域名仍提供 3.0.11。
+
+## 历史部署记录
+
 3.0.16缩小项目图片预览，压缩手机视频卡片，放大图默认完整显示。项目文案、数据、原图、封面和视频／分析链接保留。详细改动与验证见[RELEASE-3.0.16.md](RELEASE-3.0.16.md)。
 
 3.0.15仅调整酷狗排版，保留原文、数据与全部作品。修改与核对见[RELEASE-3.0.15.md](RELEASE-3.0.15.md)。
