@@ -4,14 +4,29 @@
   const V = window.PORTFOLIO_V3;
   const M = window.PORTFOLIO_MEDIA;
   const main = document.getElementById('main');
-  const root = new URL('../../', document.baseURI);
+  const assetBase = document.body.dataset.assetBase || document.baseURI;
+  const root = new URL('../../', assetBase);
   const dialog = document.getElementById('image-viewer');
   const stage = document.getElementById('viewer-stage');
   const fullImage = document.getElementById('viewer-image');
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const plain = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/\*\*|`/g,'').trim();
   const slug = s => plain(s).toLowerCase().replace(/\s+/g,'-').replace(/[^\p{L}\p{N}_-]/gu,'');
-  const project = id => D.projects.find(p => p.id === id);
+  const standaloneProjects = new Map([
+    ['xiaohongshu',{
+      id:'xiaohongshu',name:'胶原炮面膜',category:'小红书达人种草',
+      short:'围绕 30+ 女性的日常抗老需求，策划达人选题、首图和脚本，并参与稿件审核。',
+      cover:'assets/collagen/project-cover.png',width:1280,height:1707,alt:'原生密码胶原炮面膜的产品展示图'
+    }],
+    ['videochannel',{
+      id:'videochannel',name:'逆时光颜研究院',category:'品牌科普视频号从 0 到 1',
+      short:'负责科普号的内容定位、早期选题和原创脚本。',
+      cover:'assets/videochannel-project-cover.png',width:1320,height:1468,alt:'逆时光颜研究院视频号主页'
+    }]
+  ]);
+  const workOrder = [...V.order,...standaloneProjects.keys()];
+  const listedProject = id => standaloneProjects.get(id) || V.cases[id];
+  const project = id => standaloneProjects.get(id) || D.projects.find(p => p.id === id);
   const absolute = (raw, source) => new URL(raw, new URL(source, root));
   const relative = url => decodeURIComponent(url.pathname.slice(root.pathname.length));
   let currentKey = '', lastUrl = '', routeSequence = 0, restoreLock = false;
@@ -26,7 +41,7 @@
     const url=absolute(raw,source), rel=relative(url), fragment=decodeURIComponent(url.hash.slice(1));
     if(M.articles[rel]) return {href:M.articles[rel].url,external:true};
     if(M.videos[rel]) return {href:M.videos[rel].originalUrl||M.videos[rel].analysis,external:!!M.videos[rel].originalUrl};
-    if(rel==='portfolio-resume.pdf') return {href:new URL('assets/resume.pdf?v=3.0.16',document.baseURI).href,external:true};
+    if(rel==='portfolio-resume.pdf') return {href:new URL('assets/resume.pdf?v=3.0.16',assetBase).href,external:true};
     const directoryRoutes={
       'portfolio-content/tongyan-mask/assets/detail':'#/project/mask/more-detail',
       'portfolio-content/tongyan-mask/assets/moments':'#/project/mask/more-moments',
@@ -130,9 +145,13 @@
 
   const asset = path => new URL(path,root).href;
   const cta = (href,label,kind='button') => `<a class="${kind}" href="${href}"${/\.pdf(?:[?#]|$)/.test(href)?' target="_blank" rel="noopener"':''}>${label}<span aria-hidden="true">↗</span></a>`;
+  function standaloneCover(c,alt=c.alt) {
+    return `<img src="${esc(new URL(c.cover,document.baseURI).href)}" alt="${esc(alt)}" width="${c.width}" height="${c.height}" loading="lazy">`;
+  }
   function projectArtwork(c) {
-    if(c===V.cases.oil) return `<div class="project-art art-oil art-editorial-cover"><img src="${esc(new URL('assets/oil-editorial-cover-v309.webp',document.baseURI).href)}" alt="日夜精华油：昼夜分护、仿生皮脂膜，日间与夜间双瓶组合" width="1448" height="1086" loading="lazy"><span class="art-label">${esc(c.number)} / ${esc(c.category)}</span></div>`;
-    if(c===V.cases.kugou) return `<div class="project-art art-kugou art-kugou-cover art-editorial-cover"><img src="${esc(new URL('assets/kugou-platform-cover-v308.webp',document.baseURI).href)}" alt="酷狗音乐：微博、微信公众号、小红书、抖音多平台内容传播" width="1448" height="1086" loading="lazy"><span class="art-label">${esc(c.number)} / ${esc(c.category)}</span></div>`;
+    if(standaloneProjects.has(c.id)) return `<div class="project-art art-editorial-cover">${standaloneCover(c)}</div>`;
+    if(c===V.cases.oil) return `<div class="project-art art-oil art-editorial-cover"><img src="${esc(new URL('assets/oil-editorial-cover-v309.webp',assetBase).href)}" alt="日夜精华油：昼夜分护、仿生皮脂膜，日间与夜间双瓶组合" width="1448" height="1086" loading="lazy"><span class="art-label">${esc(c.number)} / ${esc(c.category)}</span></div>`;
+    if(c===V.cases.kugou) return `<div class="project-art art-kugou art-kugou-cover art-editorial-cover"><img src="${esc(new URL('assets/kugou-platform-cover-v308.webp',assetBase).href)}" alt="酷狗音乐：微博、微信公众号、小红书、抖音多平台内容传播" width="1448" height="1086" loading="lazy"><span class="art-label">${esc(c.number)} / ${esc(c.category)}</span></div>`;
     return `<div class="project-art ${c===V.cases.mask?'art-mask':''}"><img src="${esc(asset(c.cover))}" alt="${esc(c.name)}代表作品" width="560" height="380" loading="lazy"><span class="art-label">${esc(c.number)} / ${esc(c.category)}</span></div>`;
   }
   function featureCard(id) {
@@ -151,47 +170,159 @@
     return `<article class="feature-card feature-${id}"><div class="feature-heading"><h3><a href="#/project/${id}">${esc(c.name)}<span aria-hidden="true">↗</span></a></h3><p class="project-type">${esc(info.title)}</p></div><a class="feature-image-link" href="#/project/${id}" aria-label="查看${esc(c.name)}案例"><div class="work-samples samples-${id}">${info.pictures.map(([path,label])=>`<img src="${esc(asset(path))}" alt="${esc(label)}" loading="lazy">`).join('')}</div></a><div class="feature-copy"><p class="feature-work">${esc(info.work)}</p><p class="feature-result">${esc(info.result)}</p><a class="text-link" href="#/project/${id}">查看案例 <span aria-hidden="true">↗</span></a></div></article>`;
   }
   function compactProject(id) {
-    const c=V.cases[id];
-    return `<a class="compact-project ${id==='mask'?'compact-mask':''}" href="#/project/${id}"><span class="project-index">${c.number}</span><img src="${esc(asset(c.cover))}" alt="" width="100" height="110" loading="lazy"><span class="compact-copy"><span class="eyebrow">${esc(c.category)}</span><strong>${esc(c.name)}</strong><span>${esc(c.short)}</span></span><span class="project-arrow" aria-hidden="true">↗</span></a>`;
+    const descriptions={mask:'升级卖点、达人脚本与直播讲解',sun:'产品卖点、销售话术与达人脚本',clean:'产品主张、海报文案与上新文章'};
+    const c=listedProject(id);
+    const cover=standaloneProjects.has(id)?standaloneCover(c,''):`<img src="${esc(asset(c.cover))}" alt="" width="100" height="110" loading="lazy">`;
+    return `<a class="compact-project compact-${id}" href="#/project/${id}">${cover}<span class="compact-copy"><strong>${esc(c.name)}</strong><span>${esc(descriptions[id]||c.category)}</span></span><span class="project-arrow" aria-hidden="true">↗</span></a>`;
   }
   function contactBand() {
     return `<section class="contact-band" id="about-contact"><div><p class="eyebrow">LET’S MAKE GOOD CONTENT.</p><h2>下一次，让内容为你的品牌说话。</h2><p>求职方向：内容营销经理 / 内容团队组长 · 广州</p></div><div>${cta('mailto:beibiduo@163.com','邮件联系','contact-link')}<a href="assets/resume.pdf?v=3.0.16" target="_blank" rel="noopener">查看简历 PDF ↗</a></div></section>`;
   }
   function homePage() {
-    const otherWork={mask:'升级卖点、达人脚本与直播讲解',sun:'产品卖点、销售话术与达人脚本',clean:'产品主张、海报文案与上新文章'};
-    return `<div class="page-home home-direct"><section class="home-intro"><p class="intro-name">孙岩萍 · 作品集</p><h1>内容营销与<br class="mobile-break">新媒体运营</h1><p class="intro-description">9年以上经验，做过护肤品新品内容策划、酷狗音乐新媒体运营，并管理过两名专员。</p><p class="intro-target">求职方向：内容营销经理 / 内容团队组长 · 广州</p><div class="hero-actions">${cta('#/home/selected','查看作品')}${cta('assets/resume.pdf?v=3.0.16','查看简历','text-link')}</div></section><section class="selected-section" id="home-selected" tabindex="-1"><div class="section-heading"><h2>代表项目</h2></div><div class="featured-grid">${featureCard('oil')}${featureCard('kugou')}</div></section><section class="more-section"><div class="section-heading"><h2>其他作品</h2><a class="text-link" href="#/works">全部作品 <span aria-hidden="true">↗</span></a></div><div>${['mask','sun','clean'].map(id=>{const c=V.cases[id];return `<a class="compact-project compact-${id}" href="#/project/${id}"><img src="${esc(asset(c.cover))}" alt="" width="100" height="110" loading="lazy"><span class="compact-copy"><strong>${esc(c.name)}</strong><span>${esc(otherWork[id])}</span></span><span class="project-arrow" aria-hidden="true">↗</span></a>`;}).join('')}<a class="compact-project compact-text" href="#/works/xiaohongshu"><span class="compact-copy"><strong>胶原炮面膜</strong><span>小红书达人种草</span></span><span class="project-arrow" aria-hidden="true">↗</span></a><a class="compact-project compact-text" href="#/works/videochannel"><span class="compact-copy"><strong>逆时光颜研究院</strong><span>品牌科普视频号从 0 到 1</span></span><span class="project-arrow" aria-hidden="true">↗</span></a></div></section><section class="home-contact" id="about-contact"><div><h2>联系我</h2><p>求职方向：内容营销经理 / 内容团队组长</p></div><a href="mailto:beibiduo@163.com">beibiduo@163.com <span aria-hidden="true">↗</span></a></section></div>`;
+    const featured=['oil','kugou'];
+    const otherWork=workOrder.filter(id=>!featured.includes(id));
+    return `<div class="page-home home-direct"><section class="home-intro"><p class="intro-name">孙岩萍 · 作品集</p><h1>内容营销与<br class="mobile-break">新媒体运营</h1><p class="intro-description">9年以上经验，做过护肤品新品内容策划、酷狗音乐新媒体运营，并管理过两名专员。</p><p class="intro-target">求职方向：内容营销经理 / 内容团队组长 · 广州</p><div class="hero-actions">${cta('#/home/selected','查看作品')}${cta('assets/resume.pdf?v=3.0.16','查看简历','text-link')}</div></section><section class="selected-section" id="home-selected" tabindex="-1"><div class="section-heading"><h2>代表项目</h2></div><div class="featured-grid">${featured.map(featureCard).join('')}</div></section><section class="more-section"><div class="section-heading"><h2>其他作品</h2><a class="text-link" href="#/works">全部作品 <span aria-hidden="true">↗</span></a></div><div>${otherWork.map(compactProject).join('')}</div></section><section class="home-contact" id="about-contact"><div><h2>联系我</h2><p>求职方向：内容营销经理 / 内容团队组长</p></div><a href="mailto:beibiduo@163.com">beibiduo@163.com <span aria-hidden="true">↗</span></a></section></div>`;
   }
-  function xiaohongshuCase() {
-    return `<section class="about-section works-channel" id="works-xiaohongshu" tabindex="-1">
-      <h2>胶原炮面膜｜小红书达人种草</h2>
-      <p class="channel-role">原生密码 · 达人种草内容策略与脚本策划</p>
-      <div class="responsibility-table">
-        <div><h3>定选题</h3><p>面向 30+ 女性的抗老需求，从日常护肤场景切入，围绕肌肤紧致和胶原护理定选题。</p></div>
-        <div><h3>写 Brief 和脚本</h3><p>撰写达人合作 Brief、图文和视频脚本，用护肤痛点、真人使用过程和体验分享带出卖点。</p></div>
-        <div><h3>审稿与修改</h3><p>参与达人笔记和视频的审核与修改，核对卖点是否准确、讲述是否连贯、产品展示是否符合品牌要求。</p></div>
-      </div>
-    </section>`;
+
+  const collagenNotes = {
+    budget: {
+      author: '雯柚甜', url: 'https://www.xiaohongshu.com/explore/6a2792760000000007029ba3',
+      metrics: '254 赞 · 111 收藏 · 46 评论', cover: 'budget-cover.webp', width: 1080, height: 1440,
+      alt: '雯柚甜笔记首图，人物与产品四宫格，中间写有金融人护肤预算主题'
+    },
+    review: {
+      author: '傲娇年世兰', url: 'https://www.xiaohongshu.com/explore/697c6039000000000a031c61',
+      metrics: '479 赞 · 170 收藏 · 17 评论', cover: 'review-cover.webp', width: 640, height: 854,
+      alt: '傲娇年世兰笔记首图，真人、原生密码产品包装和两张膜布同屏'
+    }
+  };
+  const collagenRoute = '#/project/xiaohongshu';
+  const collagenReader = '#/read/xiaohongshu-analysis';
+  const collagenImage = name => new URL('assets/collagen/' + name, document.baseURI).href;
+  function collagenFigure(note, caption, file=note.cover, alt=note.alt) {
+    const path=esc(collagenImage(file));
+    return '<figure class="collagen-figure"><button type="button" class="image-open" data-full-src="'+path+'" data-caption="'+esc(caption)+'" aria-label="放大查看'+esc(caption)+'"><img src="'+path+'" width="'+note.width+'" height="'+note.height+'" alt="'+esc(alt)+'" loading="lazy" decoding="async"><span hidden>图片暂时无法载入。</span></button><figcaption>'+esc(caption)+'</figcaption></figure>';
   }
-  function brandVideoChannelCase() {
-    const screenshots=[
-      {src:'assets/antiaging-channel-overview.webp',alt:'逆时光颜研究院｜账号主页与历史数据',width:1960,height:1156},
-      {src:'assets/antiaging-channel-videos.webp',alt:'逆时光颜研究院｜四条代表视频与互动截图',width:1948,height:1060}
+  function collagenSource(note) {
+    return '<p class="collagen-source">'+esc(note.metrics)+' <span>· 2026 年 11 月 19 日核对</span> <a class="text-link" href="'+note.url+'" target="_blank" rel="noopener">原笔记 ↗</a></p>';
+  }
+  function collagenLedger() {
+    return '<figure class="collagen-figure"><div class="collagen-ledger"><p class="collagen-label">改稿示意</p><strong>护肤账本</strong><p>护理预算分别放在哪几步？</p><dl><div><dt>日常基础护理</dt><dd>每天会用到的几步</dd></div><div><dt>阶段性护理</dt><dd>我会额外留时间做的一步<br>胶原炮面膜放在这里</dd></div><div><dt>额外预算</dt><dd>先看手里已有的，再决定要不要添</dd></div></dl></div><figcaption>改稿示意 · 护肤账本前移</figcaption></figure>';
+  }
+  function collagenCasePage() {
+    const {budget,review}=collagenNotes;
+    return [
+      '<article class="collagen-page"><div class="breadcrumb"><a href="#/works">← 全部作品</a></div>',
+      '<div class="collagen-top" id="xiaohongshu-overview" tabindex="-1"><header><p class="eyebrow">原生密码 · 小红书达人种草</p><h1>胶原炮面膜</h1><p class="collagen-lead">围绕 30+ 女性的日常抗老需求，我根据读者是刷到笔记还是主动搜索，决定标题、首图和内页先讲什么。</p><p class="collagen-role"><strong>我负责</strong> 达人选题、Brief 与脚本、封面和首图内容，并参与稿件的审核与修改。</p></header>',
+      '<section class="collagen-strategy" id="xiaohongshu-strategy" aria-labelledby="collagen-strategy-title" tabindex="-1"><h2 id="collagen-strategy-title">我的内容策略</h2>',
+      '<dl><div><dt>发现型 · 刷到时给一个点开理由</dt><dd>借达人熟悉的身份或生活场景提出具体问题，让产品出现在她原本会讲的话题里。</dd></div><div><dt>搜索型 · 搜到时尽早给答案</dt><dd>标题写清产品名和用户的问题，首图让人认出同款，第二张优先回答怎么用。</dd></div></dl>',
+      '<p class="collagen-check"><strong>审稿时我看</strong> 封面说了什么，第二张有没有先给答案，末页的信息是否值得回看。</p></section></div>',
+      '<section class="collagen-section" id="xiaohongshu-cases" tabindex="-1"><div class="collagen-section-title"><h2>笔记案例</h2><p class="caption">公开笔记复盘</p></div>',
+      '<article class="collagen-primary"><div class="collagen-example-copy"><p class="eyebrow">发现型复盘 · 雯柚甜</p><h3>封面说护肤账本，第二张先给账本</h3><p>保留金融人讲预算的切口，把三类护理选择前移。下一张再放产品静物，说明面膜为什么出现在这一步。</p>'+collagenSource(budget)+cta(collagenReader,'看原第二张与改稿分析','text-link')+'</div>',
+      '<div class="collagen-pair">'+collagenFigure(budget,'原首图')+collagenLedger()+'</div></article>',
+      '<article class="collagen-contrast">'+collagenFigure(review,'原首图 · 傲娇年世兰')+'<div class="collagen-example-copy"><p class="eyebrow">搜索型写法示意 · 傲娇年世兰样本</p><h3>原生密码胶原炮面膜怎么用？</h3><p>沿用真人、包装和膜布同屏的首图思路，标题直接写品名和用法问题，第二张用实物标出白膜和金膜，末页给使用速查卡。</p>'+collagenSource(review)+'</div></article>',
+      '</section>'+nextProjectNav('xiaohongshu','#/','← 返回作品集首页')+'</article>'
+    ].join('');
+  }
+  function collagenAnalysisPage() {
+    const {budget}=collagenNotes;
+    const brief=[
+      ['首图','胶原炮面膜怎么用？','拍真人、对应版本的包装和膜布，首屏能认出同款。'],
+      ['第二张','白膜和金膜怎么分？','组件和说明同框，把名称标在实物边上。'],
+      ['护理顺序','放在晚间护理哪一步？','结合对应版本的包装说明和真实使用过程，说明达人怎么安排。'],
+      ['用法','这一次怎么用','用连续实拍交代步骤，上图文字与包装说明核对。'],
+      ['体验','我留意了贴合和肤感','保留达人真实感受，用原话配近景。'],
+      ['收藏图','第一次打开核对三项','把包装版本、组件和使用顺序做成一张速查卡。']
     ];
-    return `<section class="about-section works-channel" id="works-videochannel" tabindex="-1">
-      <h2>逆时光颜研究院｜视频号从 0 到 1</h2>
-      <p class="channel-role">无添加主义 · 微信视频号</p>
-      <p>我从 0 搭建账号的品牌科普内容，负责选题与原创脚本。围绕抗老主题，用熟龄人物故事、饮食话题和运动场景做选题。</p>
-      <div class="result-metrics channel-metrics" aria-label="账号历史数据">
-        <div class="metric-item"><strong>3.1万+</strong><span>粉丝</span></div>
-        <div class="metric-item"><strong>53</strong><span>条原创视频</span></div>
-        <div class="metric-item"><strong>60万+</strong><span>转发收藏</span></div>
+    return '<article class="collagen-page"><div class="breadcrumb"><a href="'+collagenRoute+'/cases">← 返回笔记案例</a></div><p class="eyebrow">发现型复盘 · 雯柚甜</p><h1>第二张图先给护肤账本</h1><p class="collagen-lead">封面让人想看金融人怎么花护肤预算，原第二张放的是产品静物。我会先给护理分类，再用下一张解释面膜放在哪一步。</p><div class="collagen-three">'+collagenFigure(budget,'原首图')+collagenFigure(budget,'原第二张 · 产品静物','budget-slide-2.webp','雯柚甜原第二张的产品静物图')+collagenLedger()+'</div>'+collagenSource(budget)+'<details class="supplementary collagen-brief" id="collagen-brief"><summary><span>六图达人 Brief</span><span class="detail-meta">搜索型方案</span></summary><div class="supplement-body"><p><strong>原生密码胶原炮面膜怎么用？</strong></p><ol>'+brief.map(([page,title,shot])=>'<li><strong>'+esc(page)+' · '+esc(title)+'</strong><p>'+esc(shot)+'</p></li>').join('')+'</ol></div></details><p class="collagen-back"><a class="text-link" href="'+collagenRoute+'/cases">← 返回笔记案例</a></p></article>';
+  }
+
+
+  const channelRoute = '#/project/videochannel';
+  const channelScreenshots = {
+    account:{file:'antiaging-channel-overview.webp',alt:'账号主页与留存数据',width:1960,height:1156},
+    videos:{file:'antiaging-channel-videos.webp',alt:'账号公开视频的留存截图',width:1948,height:1060}
+  };
+  const channelSteps = [
+    ['定定位','面向 30 岁以上女性，围绕女性励志和抗老做内容。'],
+    ['找选题','调研视频号和抖音，整理适合讲成故事的人物和日常抗老问题。'],
+    ['筛题试发','尝试不同题材。选题前先问，看完会发给谁，有什么值得存下来再看？'],
+    ['写脚本','人物故事从有反差的画面讲起。科普先抛一个具体问题，再逐点回答。'],
+    ['看反馈','参考单条视频的转发和收藏，决定下一轮继续试哪些题材。']
+  ];
+  function channelFigure({file,alt,width,height}) {
+    const src=new URL('assets/'+file,document.baseURI).href;
+    return figure({src,alt,width,height},'preview/v3/index.html');
+  }
+  function channelCasePage() {
+    return `<article class="collagen-page channel-page">
+      <div class="breadcrumb"><a href="#/works">← 全部作品</a></div>
+      <header id="videochannel-overview" tabindex="-1">
+        <p class="eyebrow">无添加主义 · 微信视频号</p><h1>逆时光颜研究院</h1>
+        <p class="collagen-lead">从 0 到 1 搭建品牌科普号，为后续直播带货积累目标粉丝。</p>
+        <p class="collagen-role"><strong>我负责</strong> 内容定位、早期选题与原创脚本。</p>
+      </header>
+      <section class="collagen-section channel-results" id="videochannel-results" aria-labelledby="channel-results-title" tabindex="-1">
+        <div>
+          <h2 id="channel-results-title">账号历史数据</h2>
+          <div class="channel-metrics">
+            <div class="metric-item"><strong>3.1 万+</strong><span>粉丝</span></div>
+            <div class="metric-item"><strong>53</strong><span>条原创视频</span></div>
+            <div class="metric-item"><strong>60 万+</strong><span>转发与收藏</span></div>
+          </div>
+          <p class="caption">账号累计数据，来源为留存资料。</p>
+        </div>
+        ${channelFigure(channelScreenshots.account)}
+      </section>
+      <section class="collagen-section" id="videochannel-sop" aria-labelledby="channel-strategy-title" tabindex="-1">
+        <h2 id="channel-strategy-title">视频号起号 SOP</h2>
+        <ol class="channel-steps">
+          ${channelSteps.map(([title,description])=>`<li><strong>${esc(title)}</strong><p>${esc(description)}</p></li>`).join('')}
+        </ol>
+      </section>
+      <section class="collagen-section" id="videochannel-cases" aria-labelledby="channel-case-title" tabindex="-1">
+        <h2 id="channel-case-title">视频案例与分析</h2>
+        <div class="channel-example">
+          <div class="channel-example-copy">
+            <p class="eyebrow">公开视频复盘 · 2025 年 12 月 10 日发布</p>
+            <h3>平民妈妈击败亿万富豪</h3>
+            <dl>
+              <div><dt>选题</dt><dd>封面把普通妈妈和富豪放在一起，用身份和年龄的反差引出一个问题：普通人有哪些生活习惯可以借鉴？</dd></div>
+              <div><dt>脚本</dt><dd>开头交代两个人的对照，再按生活习惯分段。画面上方的章节条让人知道后面会讲什么，也方便回找某一段。</dd></div>
+            </dl>
+            <p class="caption"><strong>分享 10 万+</strong> · 2026 年 11 月 19 日查阅<br>留存截图中显示 6.9 万。</p>
+          </div>
+          <div class="channel-video-figure">${channelFigure({...channelScreenshots.videos,alt:'「平民妈妈击败亿万富豪」原视频截图'})}</div>
+        </div>
+        <details class="supplementary channel-gallery" id="videochannel-gallery">
+          <summary><span>查看更多视频截图</span></summary>
+          <div class="supplement-body">${channelFigure(channelScreenshots.videos)}</div>
+        </details>
+      </section>
+      <p class="collagen-back"><a class="text-link" href="#/">← 返回作品集首页</a></p>
+    </article>`;
+  }
+  function workIndexCard(id) {
+    const c=listedProject(id);
+    const href='#/project/'+id;
+    return `<article class="work-row">
+      <a class="work-row-art" href="${href}" aria-label="查看${esc(c.name)}案例">${projectArtwork(c)}</a>
+      <div class="work-row-copy">
+        <p class="eyebrow">${c.number?esc(c.number)+' / ':''}${esc(c.category)}</p>
+        <h2><a href="${href}">${esc(c.name)}<span aria-hidden="true">↗</span></a></h2>
+        ${c.title?`<p class="work-row-title">${esc(c.title)}</p>`:''}
+        <p>${esc(c.short)}</p>
+        ${c.role?`<p class="caption">我的职责：${esc(c.role)} · ${esc(c.tags.join(' / '))}</p>`:''}
+        ${cta(href,'查看完整案例','text-link')}
       </div>
-      <p class="caption">账号历史数据</p>
-      <div class="channel-evidence">${screenshots.map(screenshot=>figure(screenshot,'preview/v3/index.html')).join('')}</div>
-    </section>`;
+    </article>`;
+  }
+  function nextProjectNav(id,backHref='#/works',backLabel='← 全部作品') {
+    const next=workOrder[(workOrder.indexOf(id)+1)%workOrder.length];
+    return `<nav class="next-project" aria-label="继续浏览"><a class="text-link" href="${backHref}">${backLabel}</a><a href="#/project/${next}"><span>下一个案例</span><strong>${esc(listedProject(next).name)} <span aria-hidden="true">↗</span></strong></a></nav>`;
   }
   function worksPage() {
-    return `<section class="page-works"><p class="eyebrow">PROJECT INDEX</p><div class="section-heading"><h1>从产品价值，<br>到用户参与。</h1><p>产品内容策略、升级沟通、<br>平台运营与团队协作。</p></div><div class="work-index">${V.order.map(id=>{const c=V.cases[id];return `<article class="work-row"><a class="work-row-art" href="#/project/${id}" aria-label="查看${esc(c.name)}案例">${projectArtwork(c)}</a><div class="work-row-copy"><p class="eyebrow">${c.number} / ${esc(c.category)}</p><h2><a href="#/project/${id}">${esc(c.name)}<span aria-hidden="true">↗</span></a></h2><p class="work-row-title">${esc(c.title)}</p><p>${esc(c.short)}</p><p class="caption">我的职责：${esc(c.role)} · ${esc(c.tags.join(' / '))}</p>${cta('#/project/'+id,'查看完整案例','text-link')}</div></article>`;}).join('')}</div>${xiaohongshuCase()}${brandVideoChannelCase()}</section>${contactBand()}`;
+    return `<section class="page-works"><p class="eyebrow">PROJECT INDEX</p><div class="section-heading"><h1>从产品价值，<br>到用户参与。</h1><p>产品内容策略、升级沟通、<br>平台运营与团队协作。</p></div><div class="work-index">${workOrder.map(workIndexCard).join('')}</div></section>${contactBand()}`;
   }
   function aboutPage() {
     const jobs=[['2024.03—2026.09','广州无添加主义化妆品有限公司','企划（产品内容方向）','负责护肤品产品内容与新品上市传播，完成卖点、长图文、内容结构与视频脚本，协同产品、研发、设计、运营与销售推进交付。'],['2019.06—2024.01','广州酷狗计算机科技有限公司','新媒体运营经理','独立负责微博内容与活动，管理两名专员，统筹多平台内容审核；推动公众号定位调整、视频号从0到1运营与客户端引流合作。'],['2018.02—2019.04','China Marketing Development Center 首尔分部','新媒体运营','参与韩国品牌在中国市场的本地化内容、线上推广及小红书种草项目执行。'],['2017.01—2018.01','上海沪江网教育技术有限公司','新媒体编辑','围绕韩语学习需求、活动及课程推广组织新媒体内容与表达。']];
@@ -213,7 +344,7 @@
       ['oil-liuxiaoqing.mp4','结合人物口吻与熟龄护理话题，介绍产品特点和使用方式。'],
       ['oil-tutorial.mp4','将使用方法写成口播与动作说明，方便拍摄和演示。']
     ];
-    return `<div class="case-page case-oil product-direct"><div class="breadcrumb"><a href="#/works">← 全部作品</a><span>产品内容策划 / 文案</span></div><section class="case-hero" id="oil-overview" data-top-chapter tabindex="-1"><div class="case-hero-copy"><p class="project-type">新品上市内容策划 · ${esc(c.period)}</p><h1>日夜精华油</h1><p class="hero-summary">我用「表补油，里补精华」统一两款产品的表达。海报讲清日夜卖点，公众号解释早晚怎么选，达人视频示范具体用法。</p><div class="product-role-summary" id="oil-collaboration" tabindex="-1"><p><strong>我负责</strong><span>卖点提炼、海报文案与信息层级、公众号文章、视频脚本。</span></p><p class="product-team-note"><strong>合作分工</strong><span>设计师负责视觉；相关团队负责产品方案、拍摄、剪辑及商务。</span></p></div></div><div class="case-hero-visual">${figure(parts[0].blocks.find(b=>b.kind==='images').items[0],p.source,{hero:true})}</div></section><div class="case-layout"><nav class="case-nav" aria-label="本案目录"><p>本案目录</p>${links}${topButton}<a class="all-works" href="#/works">全部作品 ↗</a></nav><div class="case-bar"><span>日夜精华油</span><button type="button" id="chapter-toggle" aria-expanded="false" aria-controls="mobile-chapters"><span id="chapter-current">项目介绍</span><span aria-hidden="true">⌄</span></button><nav id="mobile-chapters" aria-label="本案章节" hidden>${links}${topButton}</nav></div><article class="case-main"><div id="oil-story" class="story-group" data-top-chapter tabindex="-1"><section class="case-section" id="oil-wireframes" tabindex="-1"><h2>海报文案与信息层级</h2><div id="oil-strategy" tabindex="-1">${renderBlocks(parts[1].blocks,p.source,'oil')}</div>${renderBlocks(parts[2].blocks,p.source,'oil')}</section><section class="case-section" id="oil-article" tabindex="-1"><h2>公众号上新文章</h2>${renderBlocks(parts[3].blocks,p.source,'oil')}</section><section class="case-section" id="oil-videos" tabindex="-1"><span id="oil-more-videos" tabindex="-1"></span><h2>视频脚本</h2><p>我负责脚本撰写，并结合人物风格与发布要求调整表达。</p><div class="product-video-list">${videos.map(([file,description])=>videoCard('portfolio-content/essence-oil/assets/videos/'+file,description)).join('')}</div><div class="product-script-links"><a class="text-link" href="#/read/6a7ad141f475">查看视频脚本分析 <span aria-hidden="true">↗</span></a><a class="text-link" href="#/read/6a7ad141f475/${encodeURIComponent('以皮脂膜为核心的品牌科普脚本')}">品牌科普脚本分析 <span aria-hidden="true">↗</span></a></div></section></div><section class="case-section outcome" id="oil-outcome" data-top-chapter tabindex="-1"><h2>项目结果</h2><div class="result-panel"><div class="result-metrics">${metricDisplay(c)}</div><p>日夜精华油产品及套组上新首月，私域 GMV 460万+。为团队及渠道整体成绩。</p></div></section><section class="case-section complete-works" id="oil-complete" data-top-chapter tabindex="-1"><h2>更多作品</h2>${extraGroups.map((group,i)=>`<details id="oil-more-${extras[i]}" class="supplementary"><summary><span>${inline(group.title,p.source)}</span></summary><div class="supplement-body">${renderBlocks(group.blocks,p.source,'oil')}<button type="button" class="collapse-detail">收起本组 ↑</button></div></details>`).join('')}</section></article></div><nav class="next-project" aria-label="继续浏览"><a class="text-link" href="#/works">← 全部作品</a><a href="#/project/kugou"><span>下一个案例</span><strong>酷狗音乐 <span aria-hidden="true">↗</span></strong></a></nav></div>`;
+    return `<div class="case-page case-oil product-direct"><div class="breadcrumb"><a href="#/works">← 全部作品</a><span>产品内容策划 / 文案</span></div><section class="case-hero" id="oil-overview" data-top-chapter tabindex="-1"><div class="case-hero-copy"><p class="project-type">新品上市内容策划 · ${esc(c.period)}</p><h1>日夜精华油</h1><p class="hero-summary">我用「表补油，里补精华」统一两款产品的表达。海报讲清日夜卖点，公众号解释早晚怎么选，达人视频示范具体用法。</p><div class="product-role-summary" id="oil-collaboration" tabindex="-1"><p><strong>我负责</strong><span>卖点提炼、海报文案与信息层级、公众号文章、视频脚本。</span></p><p class="product-team-note"><strong>合作分工</strong><span>设计师负责视觉；相关团队负责产品方案、拍摄、剪辑及商务。</span></p></div></div><div class="case-hero-visual">${figure(parts[0].blocks.find(b=>b.kind==='images').items[0],p.source,{hero:true})}</div></section><div class="case-layout"><nav class="case-nav" aria-label="本案目录"><p>本案目录</p>${links}${topButton}<a class="all-works" href="#/works">全部作品 ↗</a></nav><div class="case-bar"><span>日夜精华油</span><button type="button" id="chapter-toggle" aria-expanded="false" aria-controls="mobile-chapters"><span id="chapter-current">项目介绍</span><span aria-hidden="true">⌄</span></button><nav id="mobile-chapters" aria-label="本案章节" hidden>${links}${topButton}</nav></div><article class="case-main"><div id="oil-story" class="story-group" data-top-chapter tabindex="-1"><section class="case-section" id="oil-wireframes" tabindex="-1"><h2>海报文案与信息层级</h2><div id="oil-strategy" tabindex="-1">${renderBlocks(parts[1].blocks,p.source,'oil')}</div>${renderBlocks(parts[2].blocks,p.source,'oil')}</section><section class="case-section" id="oil-article" tabindex="-1"><h2>公众号上新文章</h2>${renderBlocks(parts[3].blocks,p.source,'oil')}</section><section class="case-section" id="oil-videos" tabindex="-1"><span id="oil-more-videos" tabindex="-1"></span><h2>视频脚本</h2><p>我负责脚本撰写，并结合人物风格与发布要求调整表达。</p><div class="product-video-list">${videos.map(([file,description])=>videoCard('portfolio-content/essence-oil/assets/videos/'+file,description)).join('')}</div><div class="product-script-links"><a class="text-link" href="#/read/6a7ad141f475">查看视频脚本分析 <span aria-hidden="true">↗</span></a><a class="text-link" href="#/read/6a7ad141f475/${encodeURIComponent('以皮脂膜为核心的品牌科普脚本')}">品牌科普脚本分析 <span aria-hidden="true">↗</span></a></div></section></div><section class="case-section outcome" id="oil-outcome" data-top-chapter tabindex="-1"><h2>项目结果</h2><div class="result-panel"><div class="result-metrics">${metricDisplay(c)}</div><p>日夜精华油产品及套组上新首月，私域 GMV 460万+。为团队及渠道整体成绩。</p></div></section><section class="case-section complete-works" id="oil-complete" data-top-chapter tabindex="-1"><h2>更多作品</h2>${extraGroups.map((group,i)=>`<details id="oil-more-${extras[i]}" class="supplementary"><summary><span>${inline(group.title,p.source)}</span></summary><div class="supplement-body">${renderBlocks(group.blocks,p.source,'oil')}<button type="button" class="collapse-detail">收起本组 ↑</button></div></details>`).join('')}</section></article></div>${nextProjectNav('oil')}</div>`;
   }
   function productCasePage(id) {
     const c=V.cases[id],p=D.pages[id],parts=sections(p),hero=parts.shift(),complete=parts.pop();parts.pop();
@@ -221,8 +352,7 @@
     const links=[['overview','项目介绍'],['story','作品展示'],['outcome','项目结果'],['complete','更多作品']].map(([key,label])=>`<a href="#/project/${id}/${key}" data-chapter="${id}-${key}">${label}</a>`).join('');
     const topButton='<button type="button" class="back-to-top" data-back-to-top>↑ 返回顶部</button>';
     const heroImage={src:asset(c.cover),alt:c.name+'代表作品'};
-    const nextId=V.order[(V.order.indexOf(id)+1)%V.order.length];
-    return `<div class="case-page case-${id} product-direct"><div class="breadcrumb"><a href="#/works">← 全部作品</a><span>${esc(c.role)}</span></div><section class="case-hero" id="${id}-overview" data-top-chapter tabindex="-1"><div class="case-hero-copy"><p class="project-type">${esc(c.category)}${c.period==='新品上市项目'?'':' · '+esc(c.period)}</p><h1>${esc(c.name)}</h1><p class="hero-summary">${esc(c.summary)}</p><div class="product-role-summary" id="${id}-collaboration" tabindex="-1"><p><strong>我负责</strong><span>${esc(c.responsibilities)}</span></p></div></div><div class="case-hero-visual">${figure(heroImage,p.source,{hero:true,originalSrc:c.originalCover})}</div></section><div class="case-layout"><nav class="case-nav" aria-label="本案目录"><p>本案目录</p>${links}${topButton}<a class="all-works" href="#/works">全部作品 ↗</a></nav><div class="case-bar"><span>${esc(c.name)}</span><button type="button" id="chapter-toggle" aria-expanded="false" aria-controls="mobile-chapters"><span id="chapter-current">项目介绍</span><span aria-hidden="true">⌄</span></button><nav id="mobile-chapters" aria-label="本案章节" hidden>${links}${topButton}</nav></div><article class="case-main"><div id="${id}-story" class="story-group" data-top-chapter tabindex="-1">${parts.map((section,i)=>{const key=layout.sections[i];const aliases=Object.entries(layout.aliases).filter(([,target])=>target===key).map(([alias])=>`<span id="${id}-${alias}" tabindex="-1"></span>`).join('');return `<section class="case-section" id="${id}-${key}" tabindex="-1">${aliases}<h2>${inline(section.title,p.source)}</h2>${renderBlocks(section.blocks,p.source,id)}</section>`;}).join('')}</div><section class="case-section outcome" id="${id}-outcome" data-top-chapter tabindex="-1"><h2>项目结果</h2><div class="result-panel"><div class="result-metrics">${metricDisplay(c)}</div><p>${esc(c.result)}</p></div></section><section class="case-section complete-works" id="${id}-complete" data-top-chapter tabindex="-1"><h2>更多作品</h2>${cards(complete.blocks).map((group,i)=>`<details id="${id}-more-${layout.extras[i]}" class="supplementary"><summary><span>${inline(group.title,p.source)}</span></summary><div class="supplement-body">${renderBlocks(group.blocks,p.source,id)}<button type="button" class="collapse-detail">收起本组 ↑</button></div></details>`).join('')}</section></article></div><nav class="next-project" aria-label="继续浏览"><a class="text-link" href="#/works">← 全部作品</a><a href="#/project/${nextId}"><span>下一个案例</span><strong>${esc(V.cases[nextId].name)} <span aria-hidden="true">↗</span></strong></a></nav></div>`;
+    return `<div class="case-page case-${id} product-direct"><div class="breadcrumb"><a href="#/works">← 全部作品</a><span>${esc(c.role)}</span></div><section class="case-hero" id="${id}-overview" data-top-chapter tabindex="-1"><div class="case-hero-copy"><p class="project-type">${esc(c.category)}${c.period==='新品上市项目'?'':' · '+esc(c.period)}</p><h1>${esc(c.name)}</h1><p class="hero-summary">${esc(c.summary)}</p><div class="product-role-summary" id="${id}-collaboration" tabindex="-1"><p><strong>我负责</strong><span>${esc(c.responsibilities)}</span></p></div></div><div class="case-hero-visual">${figure(heroImage,p.source,{hero:true,originalSrc:c.originalCover})}</div></section><div class="case-layout"><nav class="case-nav" aria-label="本案目录"><p>本案目录</p>${links}${topButton}<a class="all-works" href="#/works">全部作品 ↗</a></nav><div class="case-bar"><span>${esc(c.name)}</span><button type="button" id="chapter-toggle" aria-expanded="false" aria-controls="mobile-chapters"><span id="chapter-current">项目介绍</span><span aria-hidden="true">⌄</span></button><nav id="mobile-chapters" aria-label="本案章节" hidden>${links}${topButton}</nav></div><article class="case-main"><div id="${id}-story" class="story-group" data-top-chapter tabindex="-1">${parts.map((section,i)=>{const key=layout.sections[i];const aliases=Object.entries(layout.aliases).filter(([,target])=>target===key).map(([alias])=>`<span id="${id}-${alias}" tabindex="-1"></span>`).join('');return `<section class="case-section" id="${id}-${key}" tabindex="-1">${aliases}<h2>${inline(section.title,p.source)}</h2>${renderBlocks(section.blocks,p.source,id)}</section>`;}).join('')}</div><section class="case-section outcome" id="${id}-outcome" data-top-chapter tabindex="-1"><h2>项目结果</h2><div class="result-panel"><div class="result-metrics">${metricDisplay(c)}</div><p>${esc(c.result)}</p></div></section><section class="case-section complete-works" id="${id}-complete" data-top-chapter tabindex="-1"><h2>更多作品</h2>${cards(complete.blocks).map((group,i)=>`<details id="${id}-more-${layout.extras[i]}" class="supplementary"><summary><span>${inline(group.title,p.source)}</span></summary><div class="supplement-body">${renderBlocks(group.blocks,p.source,id)}<button type="button" class="collapse-detail">收起本组 ↑</button></div></details>`).join('')}</section></article></div>${nextProjectNav(id)}</div>`;
   }
   function kugouDisplayBlocks(blocks) {
     const at=blocks.findIndex(b=>b.kind==='metrics');
@@ -235,6 +365,8 @@
     return remaining;
   }
   function casePage(id) {
+    if(id==='xiaohongshu')return collagenCasePage();
+    if(id==='videochannel')return channelCasePage();
     if(D.pages[id].presentation)return productCasePage(id);
     if(id==='oil')return oilCasePage();
     const c=V.cases[id],p=D.pages[id],ss=sections(p),hero=ss.shift(),complete=ss.pop();ss.pop();
@@ -255,10 +387,10 @@
       html+=`<details id="${id}-more-${extraIds[id][i]}" class="supplementary"><summary><span>${inline(g.title,p.source)}</span><span class="detail-meta">${meta}</span></summary><div class="supplement-body">${renderBlocks(body,p.source,id)}<button type="button" class="collapse-detail">收起本组 ↑</button></div></details>`;
     });
     html+=`<div class="case-notes">${renderBlocks(tail.filter(b=>!b.text.startsWith('继续查看：')),p.source,id)}</div></section></article></div>`;
-    const next=V.cases[V.order[(V.order.indexOf(id)+1)%V.order.length]];
-    return html+`<nav class="next-project" aria-label="继续浏览"><a class="text-link" href="#/works">← 全部作品</a><a href="#/project/${V.order[(V.order.indexOf(id)+1)%V.order.length]}"><span>下一个案例</span><strong>${esc(next.name)} <span aria-hidden="true">↗</span></strong></a></nav></div>`;
+    return html+nextProjectNav(id)+'</div>';
   }
   function materialPage(key) {
+    if(key==='xiaohongshu-analysis')return collagenAnalysisPage();
     const p=D.materials[key];if(!p)return missingPage();let first=true,index=0;
     const body=p.blocks.map(b=>{
       if(b.kind!=='heading')return block(b,p.source);
@@ -296,7 +428,6 @@
   function routeTarget(parts) {
     if(parts[0]==='home'&&parts[1])return document.getElementById('home-selected');
     if(parts[0]==='contact')return document.getElementById('about-contact');
-    if(parts[0]==='works'&&['xiaohongshu','videochannel'].includes(parts[1]))return document.getElementById(`works-${parts[1]}`);
     if(parts[0]==='read'&&parts[2]){
       const requested=slug(parts[2]),anchor=D.reader_anchor_aliases?.[parts[1]]?.[requested]||requested;
       return [...main.querySelectorAll('[data-anchor]')].find(n=>n.dataset.anchor===anchor);
@@ -306,11 +437,19 @@
     if(group&&['wireframes','wireframes-extra'].includes(chapter))return document.getElementById(`${id}-wireframe-${group}`);
     const direct=document.getElementById(`${id}-${chapter}`);if(direct)return direct;
     const maps={oil:{intro:'overview',moments:'more-moments',sales:'collaboration'},sun:{intro:'overview',strategy:'wireframes',article:'videos',moments:'more-moments',detail:'more-detail'},mask:{intro:'overview',moments:'strategy',article:'wireframes',detail:'more-detail',sales:'collaboration'},clean:{intro:'overview',wireframes:'strategy','wireframes-extra':'more-ingredients'},kugou:{intro:'overview',social:'more-social',function:'more-function',wechat:'more-wechat',videochannel:'more-videochannel'}};
-    return document.getElementById(`${id}-${maps[id][chapter]||'wireframe-'+chapter}`)||document.getElementById(id+'-overview');
+    return document.getElementById(`${id}-${maps[id]?.[chapter]||'wireframe-'+chapter}`)||document.getElementById(id+'-overview');
   }
   function applyRoute(restore=false) {
     const sequence=++routeSequence;lastUrl=location.href;let parts;
     try{parts=location.hash.replace(/^#\/?/,'').split('/').filter(Boolean).map(decodeURIComponent);}catch{parts=['missing'];}
+    if(parts[0]==='works'&&standaloneProjects.has(parts[1])){
+      history.replaceState(history.state,'','#/project/'+parts[1]);
+      return applyRoute(restore);
+    }
+    if(parts[0]==='read'&&parts[1]==='videochannel-analysis'){
+      history.replaceState(history.state,'',channelRoute+'/cases');
+      return applyRoute(restore);
+    }
     const removedReaders={'fc642c9578b4':'oil','edb6365be578':'mask'};
     if(parts[0]==='read'&&removedReaders[parts[1]]){history.replaceState(history.state,'','#/project/'+removedReaders[parts[1]]+'/collaboration');return applyRoute(restore);}
     if(parts[0]==='wireframes'){history.replaceState(history.state,'',`#/project/sun/wireframes${parts[1]?'/'+encodeURIComponent(parts[1]):''}`);return applyRoute(restore);}
@@ -325,7 +464,7 @@
       main.querySelectorAll('.image-open img').forEach(img=>img.addEventListener('error',()=>{img.hidden=true;img.nextElementSibling.hidden=false;},{once:true}));
     }
     document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===(page==='about'?'about':page==='works'||page.startsWith('case:')?'works':''))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-    document.title=(page.startsWith('case:')?project(parts[1]).name:page==='about'?'关于我':page==='works'?'全部作品':'作品集')+'｜孙岩萍 · 作品集 3.0';
+    document.title=(page.startsWith('case:')?project(parts[1]).name:page==='read:xiaohongshu-analysis'?'胶原炮面膜笔记解析':page==='about'?'关于我':page==='works'?'全部作品':'作品集')+'｜孙岩萍 · 作品集 3.0';
     if(restoreSaved&&saved.opened)for(const [id,open]of Object.entries(saved.opened)){const el=document.getElementById(id);if(el)el.open=open;}
     const target=routeTarget(parts);
     if(target&&!restoreSaved){let el=target;while(el&&el!==main){if(el.tagName==='DETAILS')el.open=true;el=el.parentElement;}}
@@ -397,3 +536,4 @@
   window.addEventListener('pagehide',remember);
   applyRoute(false);
 })();
+
