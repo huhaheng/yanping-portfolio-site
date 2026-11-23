@@ -1,6 +1,17 @@
 # EdgeOne Pages 部署与新域名
 
-## 最新交接 · 2026-11-20 · 3.0.19
+## 最新发布 · 2026-11-23 · 3.0.19
+
+已将协作仓库 `main` 的 `2999f1f3558b21711557dd02ea6f7cb16efe2762` 快进同步到部署副本 `huhaheng/yanping-portfolio-site` 的 `main`。现有 EdgeOne 项目完成更新，`https://yanpingsun.cn/` 已返回协作者的 3.0.19，七个案例均已接入。本次沿用既有项目、域名、DNS 和 HTTPS 配置；GitHub Pages 原根首页保持原样。
+
+- 构建校验全部 423 个源文件，生成 464 个文件、196,702,842 字节；运行源码仍为 `73d46fc`，未修改协作者的页面内容和设计。
+- 本地构建产物及线上根目录均在 320、390、1280px 下检查首页、全部作品、关于及七个案例，共各 30 组，无横向溢出、脚本异常或 HTTP 错误。
+- 线上 106 个图片及原图地址返回 200 和图片 MIME；新案例封面、达人分析阅读页、Brief 展开、图片放大、返回案例、新案例兼容路由、返回顶部焦点及 `/preview/v3/` 入口通过。
+- 六个运行文件和简历与协作者源码逐字节一致；简历 SHA-256 为 `3ec379224e1b29a21b3a53d7633987f7d8e3b661b9cee722289339e851782330`。
+
+以上为执行环境中的 Chromium 和 HTTP 验证，未据此声称真机 Safari 或国内各运营商均已实测。下方 11 月 20 日及更早的待同步记录保留为历史交接。
+
+## 历史交接 · 2026-11-20 · 3.0.19
 
 - 协作源码在 `yanpingsun/yanping-portfolio-site` 的 `main`，运行源码提交为 [`73d46fc`](https://github.com/yanpingsun/yanping-portfolio-site/commit/73d46fc135ffcda2b851ac1afcc0085a667413e8)。从完整仓库构建，入口为 `preview/v3/index.html`。
 - GitHub Pages 入口为[作品集 3.0.19](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/)。首页与全部作品共七个案例，包含胶原炮面膜小红书达人种草、逆时光颜研究院视频号和两张新封面。
@@ -38,7 +49,7 @@
 | 加速区域 | **全球可用区（不含中国大陆）** |
 | 控制台 | [项目概览](https://console.cloud.tencent.com/edgeone/makers/project/makers-unagnz0yaijv/index) |
 | 平台默认域名 | `yanping-portfolio-overseas-8ghtvlwd.edgeone.dev`，不用作求职投递地址 |
-| 构建产物 | `dist-edgeone/`，450 个文件、194,149,436 字节 |
+| 当前 3.0.19 构建产物 | `dist-edgeone/`，464 个文件、196,702,842 字节 |
 
 原 EdgeOne 项目 `yanping-portfolio-site`（`makers-exop6jxam5ic`）实际使用“全球可用区（含中国大陆）”，因此未备案域名在绑定时被拦截。未找到创建后修改区域的入口，现已保留原项目，另建上述不含大陆区域项目。新项目的首次部署 `dpo4grmc0wei` 已成功。
 
@@ -70,7 +81,7 @@ python3 -m http.server 8080 --directory dist-edgeone
 
 打开 `http://localhost:8080/`，新版从网站根目录进入。`dist-edgeone/` 是生成产物，已忽略，不提交到 Git。
 
-工具按 `ASSET-MANIFEST.json` 核对全部 416 项资源的大小与 Git blob SHA-1，再复制到输出目录。保留原目录，同时将六个运行文件和 `preview/v3/assets/` 复制到网站根目录对应位置；两张导航封面、简历、原图及内容源相对链接因此都能解析。运行文件不作改写，现有 `/preview/v3/` 入口也继续可用。
+工具按 `ASSET-MANIFEST.json` 核对当前全部 423 项资源的大小与 Git blob SHA-1，再复制到输出目录。保留原目录，同时将六个运行文件和 `preview/v3/assets/` 复制到网站根目录对应位置；两张导航封面、简历、原图及内容源相对链接因此都能解析。运行文件不作改写，现有 `/preview/v3/` 入口也继续可用。
 
 本方案用于独立域名的根目录；不要把产物放入额外的子目录。以后修改运行文件或素材，应评审修改并同步资源清单后再构建，校验失败时不要跳过检查。
 
@@ -121,7 +132,7 @@ git push deploy refs/remotes/origin/main:refs/heads/main
 
 首页、脚本、样式和简历已与 3.0.11 原文件逐字节核对一致。Google 与阿里 DNS 均解析到上述 CNAME，控制台证书已部署；独立浏览器打开 HTTPS 无证书警告，HTTP 入口跳转至 HTTPS 并显示同一作品集。国内手机流量、宽带及真机 Safari 的实际访问效果仍待用户实测。
 
-从自有域名根目录检查首页、作品目录、关于页、五个案例、分析锚点（含中文和旧名称）、图片放大、九张视频封面、简历 PDF，以及手机与桌面显示。检查刷新后的深链接和网络请求无资源缺失。
+从自有域名根目录检查首页、作品目录、关于页、七个案例、分析锚点（含中文和旧名称）、图片放大、九张视频封面、简历 PDF，以及手机与桌面显示。检查刷新后的深链接和网络请求无资源缺失。
 
 微信原视频和文章保持现有链接，不将站内封面与地址正确等同于外链在所有网络可播放。当前地区访问效果必须等自有域名上线后实际测试；如不理想，可以沿用该域名改接香港托管方案。
 
