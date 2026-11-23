@@ -1,16 +1,18 @@
-# 作品集3.0.15：接手入口
+# 作品集3.0.19：接手入口
 
-当前版本：**3.0.16**（2026-11-12）。图片尺寸、手机视频布局及放大查看的最新改动见[RELEASE-3.0.16.md](RELEASE-3.0.16.md)；下方旧版本记录保留为历史参考。
+当前源码版本：**3.0.19**（2026-11-20）。新增胶原炮面膜小红书达人种草、逆时光颜研究院视频号两个独立案例和两张封面；首页及全部作品共七个案例。2026-11-23 已同步部署副本并核对 yanpingsun.cn 上线，详见[EdgeOne 部署记录](EDGEONE-DEPLOYMENT.md)。
 
-2026-11-10交接：[本轮修改汇总与域名更新步骤](UPDATE-HANDOFF-20261110.md)。已核对本地与GitHub完整一致，后续从最新main同步部署副本。
+3.0.16 的图片尺寸、手机视频布局及放大查看调整见[RELEASE-3.0.16.md](RELEASE-3.0.16.md)；下方旧版本记录保留为历史参考。
+
+2026-11-10历史交接：[本轮修改汇总与域名更新步骤](UPDATE-HANDOFF-20261110.md)。后续更新均从原仓库最新main同步部署副本。
 
 3.0.15仅调整酷狗排版，保留原文、数据与全部作品。修改与核对见[RELEASE-3.0.15.md](RELEASE-3.0.15.md)。
 
 3.0.14修正成品与线稿的并排对齐，内容及素材不变。原因、修改和验证见[RELEASE-3.0.14.md](RELEASE-3.0.14.md)。
 
-发布状态（2026-11-09）：源码与GitHub Pages预览版本为3.0.15；正式域名yanpingsun.cn仍待huhaheng同步部署副本main后更新。当前部署副本停在e97a201，当前会话没有该副本写权限。请按EDGEONE-DEPLOYMENT.md同步原仓库最新main，等待EdgeOne构建并复核正式域名。
+历史发布状态（2026-11-09）：当时 GitHub Pages 为 3.0.15，部署副本停在 e97a201，yanpingsun.cn 为 3.0.11。最新实际发布状态以 EDGEONE-DEPLOYMENT.md 顶部记录为准。
 
-更新日期：2026-11-09。供huhaheng后续修改使用。
+更新日期：2026-11-23。供huhaheng及后续维护者使用。
 
 3.0.12精简首页与精华油案例，先说明项目及本人职责，再展示真实作品。精华油视频脚本不标数量。详见[本次修改说明](RELEASE-3.0.12.md)。
 
@@ -23,16 +25,17 @@
 - 仓库：[yanpingsun/yanping-portfolio-site](https://github.com/yanpingsun/yanping-portfolio-site)
 - 分支：`main`
 - 源码目录：`preview/v3/`
-- 页面版本：**3.0.15**
+- 页面版本：**3.0.19**
+- 3.0.19运行源码提交：`73d46fc135ffcda2b851ac1afcc0085a667413e8`；发布资源清单提交：`2999f1f3558b21711557dd02ea6f7cb16efe2762`
 - 3.0.15运行源码提交：71d82dcf680f8c3401eddb87a04a8da877c14df2
 - 3.0.14运行源码提交：83713139e4fa6010ce8da0b39b06acd53aec7a87
 - 3.0.13运行源码提交：`070b3112bf3ae1c0beb2fb24e83f762ced62fb5b`
-- 本次修改：[RELEASE-3.0.15.md](RELEASE-3.0.15.md)；图片对齐修复：[RELEASE-3.0.14.md](RELEASE-3.0.14.md)；上次内容改版：[RELEASE-3.0.13.md](RELEASE-3.0.13.md)；内容依据：[已确认文案](APPROVED-PRODUCT-COPY.md)
+- 历史修改：[RELEASE-3.0.15.md](RELEASE-3.0.15.md)；图片对齐修复：[RELEASE-3.0.14.md](RELEASE-3.0.14.md)；上次内容改版：[RELEASE-3.0.13.md](RELEASE-3.0.13.md)；内容依据：[已确认文案](APPROVED-PRODUCT-COPY.md)
 - 3.0.12运行源码提交：`428350de086e4c66df13aa2fb22ff2227aef7e40`
 - 历史3.0.10运行源码基线提交：[`33954c0f479d416deeb8ecb34fd63dd9ad52a9d1`](https://github.com/yanpingsun/yanping-portfolio-site/commit/33954c0f479d416deeb8ecb34fd63dd9ad52a9d1)
 - 3.0.11运行源码提交：[`f0036d6`](https://github.com/yanpingsun/yanping-portfolio-site/commit/f0036d67e4cbf83d7145eb2a07871ff82d54a6a5)；发布交接文档不改变运行源码。
-- [正式域名（待同步3.0.15）](https://yanpingsun.cn/)
-- [保留的GitHub Pages预览](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.15#/home/selected)
+- [正式网站](https://yanpingsun.cn/)
+- [保留的GitHub Pages预览](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/)
 - 新域名部署仓库：`huhaheng/yanping-portfolio-site`，`main`；原仓库合入后需同步此副本才会更新新域名。
 - [完整分工、事实口径与历史修改记录](HANDOFF.md)
 
@@ -47,6 +50,7 @@
 | 首页、项目目录、关于页 | `app.js`中的`homePage`、`featureCard`、`worksPage`、`aboutPage` |
 | 产品案例 | 精华油为`oilCasePage`；面膜、防晒、洁颜霜为`productCasePage`。正文及章节配置在`data.js`，职责与摘要在`content.js` |
 | 项目标题、摘要、职责与成果 | `content.js`中的`PORTFOLIO_V3.cases` |
+| 小红书与品牌视频号新案例 | `app.js` 中的 `standaloneProjects`、`collagenCasePage`、`collagenAnalysisPage`、`channelCasePage`；封面及截图在 `assets/` |
 | 案例叙事与补充分析 | `data.js`中的`GENERAL_PORTFOLIO.pages`、`materials` |
 | 字体、留白、图框与手机布局 | `styles.css` |
 | 视频封面、原视频与公众号链接 | `media.js`中的`PORTFOLIO_MEDIA.videos`、`articles` |
@@ -91,6 +95,6 @@
 
 3.0.10在这三种宽度下核对三个视频案例与面膜新旧分析锚点，共18组，无横向溢出或封面裁切；9张封面逐一放大核对原始尺寸，新增分析入口已实际点击。
 
-脚本、样式和简历的当前缓存参数为`?v=3.0.15`。后续有页面改动时同步更新`index.html`、`app.js`等相关缓存参数及版本记录。
+当前 `app.js`、`styles.css` 的缓存参数为 `?v=3.0.19`；未再次修改的 `data.js`、`content.js`、`media.js` 及简历沿用 `?v=3.0.16`。后续按实际改动更新相关缓存参数及版本记录，并重新核对资源清单。
 
 原仓库修改合入`main`后，按[同步说明](EDGEONE-DEPLOYMENT.md#后续代码更新与副本同步)同步部署副本，等待EdgeOne构建成功后核对新域名。GitHub Pages仍独立等待其`pages build and deployment`成功并核对。微信外链仍需在允许访问的环境内复核，不能把仅配置了地址写成已验证播放。
