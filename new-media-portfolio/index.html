@@ -105,6 +105,30 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 .product-card img{height:132px}.product-card-copy{padding:9px 10px}.product-card h3{font-size:13px}.product-card p{font-size:10px;line-height:1.48}.product-footer{padding:6px 9px;margin:7px 0 2px}
 .ending-body h2{font-size:45px}.ending-intro{font-size:13px!important}
 }
+
+/* 12 / 13: 四个护肤项目同级展示，成品图片来自已核实的GitHub原素材 */
+#s12 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#s12 .product-card{display:grid;grid-template-columns:126px minmax(0,1fr);min-height:184px}
+#s12 .product-card>a:first-child{height:100%;min-width:0}
+#s12 .product-card img{width:100%;height:100%;max-height:240px;min-height:180px;object-fit:contain}
+#s12 .product-card-copy{padding:13px 14px}
+#s12 .product-card h3{font-size:14px;margin:5px 0 6px}
+#s12 .product-card p{font-size:11px;line-height:1.52}
+#s12 .product-card b{font-size:10px}
+#s12 .product-card-copy>a{font-size:10px}
+#s12 .micro{margin-top:11px}
+@media (max-width:800px){
+#s12 .product-grid{grid-template-columns:1fr}
+#s12 .product-card{grid-template-columns:105px minmax(0,1fr);min-height:147px}
+#s12 .product-card img{min-height:147px;max-height:220px}
+}
+@media print{
+#s12 .product-card{grid-template-columns:112px minmax(0,1fr);min-height:160px}
+#s12 .product-card img{min-height:160px;max-height:186px}
+#s12 .product-card-copy{padding:9px 10px}
+#s12 .product-card h3{font-size:13px}
+#s12 .product-card p{font-size:10px;line-height:1.35}
+}
 </style></head><body><header class="app-header"><div class="header-inner"><a class="brand" href="#s1">孙岩萍 <small>NEW MEDIA / 2026</small></a><nav aria-label="作品导航" class="nav"><a href="#s3">业务增长</a><a href="#s4">粉丝活动</a><a href="#s5">内容矩阵</a><a href="#s6">晚安电台</a><a href="#s7">团队协作</a><a href="#s8">视频号</a><a href="#s10">小红书</a><a href="#s12">护肤新品</a><a class="nav-top" href="#s1">回到首页 ↑</a></nav></div></header><main class="deck"><section class="slide cover" id="s1">
 <div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>01 / 13</span></div>
 <div class="slide-heading"><div class="kicker">NEW MEDIA PORTFOLIO / 2026</div>
@@ -291,8 +315,8 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 <article class="product-card"><a href="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/essence-oil/day-finished.jpg" target="_blank" rel="noopener"><img src="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/essence-oil/day-finished.jpg" alt="日夜精华油历史发布成品海报" loading="lazy"></a><div class="product-card-copy"><span>01 / 日夜精华油</span><h3>“表补油，里补精华”</h3><p>以共同卖点串联双瓶产品，区分日夜使用场景；参与系列海报、上新文章与人物视频脚本。</p><b>上新首月私域GMV 460万+</b><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/oil" target="_blank" rel="noopener">查看完整项目 ↗</a></div></article>
 <article class="product-card"><a href="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/sunscreen/launch-finished.jpg" target="_blank" rel="noopener"><img src="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/sunscreen/launch-finished.jpg" alt="防晒上新传播历史海报成品" loading="lazy"></a><div class="product-card-copy"><span>02 / 防晒</span><h3>“外防光老化，内养透亮肌”</h3><p>将防晒、美白、抗老信息串联表达，分别安排价格价值、肤感疑问与使用场景的内容。</p><b>上新首月私域GMV 120万+</b><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/sun" target="_blank" rel="noopener">查看完整项目 ↗</a></div></article>
 <article class="product-card"><a href="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/tongyan-mask/dual-finished.jpg" target="_blank" rel="noopener"><img src="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/tongyan-mask/dual-finished.jpg" alt="童颜面膜双膜内容历史成品海报" loading="lazy"></a><div class="product-card-copy"><span>03 / 童颜面膜</span><h3>把产品升级讲清楚</h3><p>围绕双膜、升级变化与使用场景，参与长图文、视频脚本及直播讲解内容。</p><b>上新首月GMV 100万+</b><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/mask" target="_blank" rel="noopener">查看完整项目 ↗</a></div></article>
-</div>
-<div class="product-footer"><div><strong>另：逆时光洁颜霜</strong><span>围绕“洗得净、洗后不紧绷”提炼信息主张；上新首月GMV 80万+（团队整体）。</span></div><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/clean" target="_blank" rel="noopener">查看洁面项目 ↗</a></div>
+
+<article class="product-card"><a href="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/cleanser/core-finished.jpg" target="_blank" rel="noopener" aria-label="放大查看逆时光洁颜霜历史成品海报"><img src="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/cleanser/core-finished.jpg" alt="逆时光洁颜霜核心主张历史成品海报" loading="lazy"></a><div class="product-card-copy"><span>04 / 逆时光洁颜霜</span><h3>洗得净，洗后不紧绷</h3><p>从清洁力和洗后感受两项核心关注切入，提炼产品主张，完成海报文案、信息层级与上新文章内容。</p><b>上新首月GMV 80万+</b><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/clean" target="_blank" rel="noopener">查看完整项目 ↗</a></div></article></div>
 <p class="micro">四项GMV均为产品上新首月的项目/渠道整体成绩，不对单条内容、单个人作销售归因。上述图片为实际内容成品，设计执行由设计师完成。</p>
 </div><div class="slide-bottom"><span>孙岩萍 · 新媒体运营经理 / 2026</span><span>真实历史素材与项目记录 · 明确个人职责与团队成果</span></div></section><section class="slide ending" id="s13">
 <div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>13 / 13</span></div>
