@@ -8,6 +8,8 @@
 - [查看编辑源码](./index.html)
 - [3.0.19 原版素材库](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/)
 
+独立站的构建参数、路径适配、发布状态与后续同步见 [DEPLOYMENT.md](DEPLOYMENT.md)。原始网页内容和视觉保持作者版本。
+
 ## 13页阅读顺序
 
 | 页 | 主题 | 证明点 |
