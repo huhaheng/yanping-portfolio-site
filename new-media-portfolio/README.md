@@ -4,7 +4,8 @@
 
 在 GitHub 3.0.19 原作品、数据和历史资料基础上，面向**新媒体运营经理 / 内容营销经理**岗位独立重组。旧产品内容版 `preview/v3/` 与仓库根入口不变。
 
-- [直接查看新媒体作品集](https://yanpingsun.github.io/yanping-portfolio-site/new-media-portfolio/)
+- [正式网站：media.yanpingsun.cn](https://media.yanpingsun.cn/)
+- [保留的 GitHub Pages 预览](https://yanpingsun.github.io/yanping-portfolio-site/new-media-portfolio/)
 - [查看编辑源码](./index.html)
 - [3.0.19 原版素材库](https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/)
 
