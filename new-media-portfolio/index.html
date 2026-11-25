@@ -49,12 +49,12 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
   #s7 .story li{margin-bottom:6px}
   #s7 .metrics{margin-bottom:9px}
   #s7 .quote-bar{margin-top:7px;padding:8px 12px}
-  #s12 .slide-heading{margin-bottom:3mm}
-  #s12 .supplements article{min-height:180px;padding:13px 16px}
-  #s12 .supplements article p{font-size:11px;line-height:1.55}
-  #s12 .closing{margin-top:12px;padding-top:12px}
-  #s12 .closing h3{margin:4px 0}
-  #s12 .source-footer{font-size:8px;line-height:1.45;margin-top:5px}
+  #s13 .slide-heading{margin-bottom:3mm}
+  #s13 .supplements article{min-height:180px;padding:13px 16px}
+  #s13 .supplements article p{font-size:11px;line-height:1.55}
+  #s13 .closing{margin-top:12px;padding-top:12px}
+  #s13 .closing h3{margin:4px 0}
+  #s13 .source-footer{font-size:8px;line-height:1.45;margin-top:5px}
 }
 
 /* 2026-11-24 / 新媒体运营经理版 · 十三页重组 */
@@ -106,31 +106,90 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 .ending-body h2{font-size:45px}.ending-intro{font-size:13px!important}
 }
 
-/* 12 / 13: 四个护肤项目同级展示，成品图片来自已核实的GitHub原素材 */
-#s12 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-#s12 .product-card{display:grid;grid-template-columns:126px minmax(0,1fr);min-height:184px}
-#s12 .product-card>a:first-child{height:100%;min-width:0}
-#s12 .product-card img{width:100%;height:100%;max-height:240px;min-height:180px;object-fit:contain}
-#s12 .product-card-copy{padding:13px 14px}
-#s12 .product-card h3{font-size:14px;margin:5px 0 6px}
-#s12 .product-card p{font-size:11px;line-height:1.52}
-#s12 .product-card b{font-size:10px}
-#s12 .product-card-copy>a{font-size:10px}
-#s12 .micro{margin-top:11px}
+/* 13 / 14: 四个护肤项目同级展示，成品图片来自已核实的GitHub原素材 */
+#s13 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#s13 .product-card{display:grid;grid-template-columns:126px minmax(0,1fr);min-height:184px}
+#s13 .product-card>a:first-child{height:100%;min-width:0}
+#s13 .product-card img{width:100%;height:100%;max-height:240px;min-height:180px;object-fit:contain}
+#s13 .product-card-copy{padding:13px 14px}
+#s13 .product-card h3{font-size:14px;margin:5px 0 6px}
+#s13 .product-card p{font-size:11px;line-height:1.52}
+#s13 .product-card b{font-size:10px}
+#s13 .product-card-copy>a{font-size:10px}
+#s13 .micro{margin-top:11px}
 @media (max-width:800px){
-#s12 .product-grid{grid-template-columns:1fr}
-#s12 .product-card{grid-template-columns:105px minmax(0,1fr);min-height:147px}
-#s12 .product-card img{min-height:147px;max-height:220px}
+#s13 .product-grid{grid-template-columns:1fr}
+#s13 .product-card{grid-template-columns:105px minmax(0,1fr);min-height:147px}
+#s13 .product-card img{min-height:147px;max-height:220px}
 }
 @media print{
-#s12 .product-card{grid-template-columns:112px minmax(0,1fr);min-height:160px}
-#s12 .product-card img{min-height:160px;max-height:186px}
-#s12 .product-card-copy{padding:9px 10px}
-#s12 .product-card h3{font-size:13px}
-#s12 .product-card p{font-size:10px;line-height:1.35}
+#s13 .product-card{grid-template-columns:112px minmax(0,1fr);min-height:160px}
+#s13 .product-card img{min-height:160px;max-height:186px}
+#s13 .product-card-copy{padding:9px 10px}
+#s13 .product-card h3{font-size:13px}
+#s13 .product-card p{font-size:10px;line-height:1.35}
 }
-</style></head><body><header class="app-header"><div class="header-inner"><a class="brand" href="#s1">孙岩萍 <small>NEW MEDIA / 2026</small></a><nav aria-label="作品导航" class="nav"><a href="#s3">业务增长</a><a href="#s4">粉丝活动</a><a href="#s5">内容矩阵</a><a href="#s6">晚安电台</a><a href="#s7">团队协作</a><a href="#s8">视频号</a><a href="#s10">小红书</a><a href="#s12">护肤新品</a><a class="nav-top" href="#s1">回到首页 ↑</a></nav></div></header><main class="deck"><section class="slide cover" id="s1">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>01 / 13</span></div>
+
+/* 2026-11-25 / 胶原炮三页：真实原图、可放大、复盘示意与历史稿分开 */
+.collagen-showcase .slide-heading{margin-bottom:17px}
+.collagen-showcase .slide-heading h2{font-size:32px;line-height:1.22}
+.collagen-showcase figure{margin:0;min-width:0}
+.collagen-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.collagen-note-card{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);align-items:center;gap:16px;padding:12px;border:1px solid #e0e7f0;border-radius:12px;background:#fafcff;min-width:0}
+.collagen-image{display:flex;align-items:center;justify-content:center;background:#f0f3f7;border-radius:8px;overflow:hidden;min-width:0}
+.collagen-image img{display:block;max-width:100%;width:100%;height:100%;object-fit:contain}
+.collagen-note-card .collagen-image{height:310px}
+.collagen-tag{font-size:10px;font-weight:800;color:#005dc5;letter-spacing:.06em}
+.collagen-note-copy{min-width:0;padding:8px 0}
+.collagen-note-copy h3{font-size:20px;margin:10px 0 6px}
+.collagen-note-copy p{font-size:14px;margin:0 0 16px;line-height:1.55;color:#3e4e63}
+.collagen-stats{color:#235681;font-size:11px;font-weight:700;line-height:1.6}
+.collagen-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.collagen-links a,.collagen-takeaway a,.note-link{font-size:12px;color:#005dc5;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.collagen-footnote{font-size:11px!important;color:#687589;line-height:1.5;margin:12px 0 0}
+.collagen-compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.collagen-panel{display:flex;flex-direction:column;padding:10px;border:1px solid #dce5ee;border-radius:10px;background:#fff;min-width:0}
+.collagen-panel figcaption{display:flex;flex-direction:column;gap:3px;margin:0 0 8px;min-width:0}
+.collagen-panel figcaption span{font-size:10px;font-weight:800;color:#526b87}
+.collagen-panel figcaption strong{font-size:14px;color:#162132}
+.collagen-compare .collagen-image,.ledger-visual{height:282px}
+.collagen-panel.revised{border-color:#a6c7e9;background:#f8fbff}
+.ledger-visual{box-sizing:border-box;background:#f0f5fb;border-radius:8px;padding:14px 12px;color:#233a56;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}
+.ledger-kicker{font-size:9px;letter-spacing:.06em;color:#536c87}
+.ledger-title{font-size:22px;font-weight:800;line-height:1.25}
+.ledger-visual>p{font-size:11px!important;margin:0 0 5px;color:#536c87}
+.ledger-row{display:flex;gap:9px;align-items:center;border-top:1px solid #dbe4ee;padding:7px 5px;min-height:42px}
+.ledger-row.selected{background:#dceafb;border-radius:6px;border-top:0}
+.ledger-row i{font-style:normal;font-size:10px;font-weight:800;color:#005dc5}
+.ledger-row b,.ledger-row small{display:block}.ledger-row b{font-size:12px}.ledger-row small{font-size:10px;color:#526b87}
+.collagen-takeaway{display:flex;align-items:center;gap:12px;border-left:3px solid #005dc5;background:#f0f5fb;padding:9px 13px;margin-top:13px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.55}
+.collagen-takeaway b{white-space:nowrap;color:#0a3470}.collagen-takeaway a{margin-left:auto;white-space:nowrap}
+.collagen-search{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.05fr);gap:20px;align-items:stretch}
+.search-original .collagen-image{height:284px}
+.search-original .note-link{display:block;margin-top:7px}
+.collagen-brief-panel{border:1px solid #dce5ee;border-radius:10px;padding:14px 15px;min-width:0;background:#fafcff}
+.collagen-brief-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.collagen-brief-heading h3{font-size:16px;line-height:1.35;margin:0}
+.collagen-brief-heading>span{font-size:10px;white-space:nowrap;color:#587494}
+.collagen-storyboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.storyboard-card{border:1px solid #dce6f1;background:#fff;border-radius:8px;padding:8px 10px;min-width:0;display:flex;flex-direction:column;gap:3px}
+.story-no{font-size:10px;font-weight:800;color:#005dc5}
+.story-art{height:56px;background:#eff4fa;border-radius:5px;display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.storyboard-card>b{font-size:13px;line-height:1.3}
+.storyboard-card>small{font-size:10px;line-height:1.45;color:#687589}
+.mini-person{width:25px;height:38px;border-radius:15px 15px 5px 5px;border:1.5px solid #6c93bb;background:#d9e7f5}
+.mini-pack{width:21px;height:29px;border-radius:3px;background:#fff;border:1.5px solid #6c93bb}
+.mini-sheet{width:26px;height:34px;border-radius:7px;background:#fff;border:1.5px solid #93a9bf;transform:rotate(-9deg)}
+.mini-sheet.gold{background:#e6d7ad;border-color:#b4a271;transform:rotate(9deg)}
+.story-art.order i{height:13px;width:13px;border-radius:50%;border:1.5px solid #7ba0c4}.story-art.order i.on{background:#4079b5}
+.story-art.steps i{font-style:normal;width:20px;height:20px;border-radius:5px;display:grid;place-items:center;background:#d2e4f7;color:#235681;font-size:11px;font-weight:800}
+.mini-face{width:32px;height:36px;border-radius:48%;background:#dbe6ef;border:1.5px solid #86a0b9}.mini-quote{color:#4079b5;font-size:24px;font-weight:800}
+.story-art.check{flex-direction:column;gap:2px}.mini-check{display:flex;align-items:center;gap:5px;font-size:11px;color:#4079b5;line-height:1.1}.mini-check span{display:block;width:41px;height:2px;background:#a8bdd3}
+@media(max-width:800px){.collagen-showcase .slide-heading h2{font-size:28px}.collagen-overview,.collagen-search{grid-template-columns:1fr;gap:12px}.collagen-note-card{grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:12px}.collagen-note-card .collagen-image{height:250px}.collagen-compare{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.collagen-compare .collagen-image{height:205px}.collagen-panel.revised{grid-column:1/-1}.ledger-visual{height:auto;min-height:230px}.collagen-takeaway{align-items:flex-start;flex-wrap:wrap}.collagen-takeaway a{margin-left:0}.search-original .collagen-image{height:300px}.collagen-brief-heading{flex-wrap:wrap}.collagen-storyboard{gap:7px}.storyboard-card{padding:7px}.story-art{height:45px}}
+@media(max-width:420px){.collagen-note-card{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);padding:9px;gap:9px}.collagen-note-card .collagen-image{height:198px}.collagen-note-copy h3{font-size:17px}.collagen-note-copy p{font-size:12px}.collagen-compare .collagen-image{height:165px}.collagen-panel figcaption strong{font-size:12px}.collagen-storyboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{.collagen-showcase .slide-heading{margin:5mm 0 4mm}.collagen-showcase .slide-heading h2{font-size:28px}.collagen-note-card .collagen-image{height:290px}.collagen-compare .collagen-image,.ledger-visual{height:258px}.search-original .collagen-image{height:267px}.collagen-showcase .slide-body{overflow:hidden}.collagen-storyboard{grid-template-columns:repeat(3,minmax(0,1fr))}.collagen-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.collagen-compare{grid-template-columns:repeat(3,minmax(0,1fr))}.collagen-panel.revised{grid-column:auto}.collagen-search{grid-template-columns:minmax(0,1fr) minmax(0,2.05fr)}.collagen-footnote{font-size:10px!important}}
+</style></head><body><header class="app-header"><div class="header-inner"><a class="brand" href="#s1">孙岩萍 <small>NEW MEDIA / 2026</small></a><nav aria-label="作品导航" class="nav"><a href="#s3">业务增长</a><a href="#s4">粉丝活动</a><a href="#s5">内容矩阵</a><a href="#s6">晚安电台</a><a href="#s7">团队协作</a><a href="#s8">视频号</a><a href="#s10">小红书</a><a href="#s13">护肤新品</a><a class="nav-top" href="#s1">回到首页 ↑</a></nav></div></header><main class="deck"><section class="slide cover" id="s1">
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>01 / 14</span></div>
 <div class="slide-heading"><div class="kicker">NEW MEDIA PORTFOLIO / 2026</div>
 <h2>从内容运营，<br/><em>到参与与业务增长。</em></h2>
 <p>孙岩萍 · 新媒体运营经理 / 内容营销 / 社媒内容策划</p></div>
@@ -143,7 +202,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s2">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>02 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>02 / 14</span></div>
 <div class="slide-heading"><div class="kicker">OVERVIEW / VERIFIED EXPERIENCE</div><h2>四类真实经历，<br>构成完整的新媒体工作能力。</h2><p>从业务目标、活动机制、内容矩阵，到新账号和消费品牌种草。每组案例都能找到真实作品与个人职责。</p></div>
 <div class="slide-body">
 <div class="chapter-grid">
@@ -153,7 +212,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 <article class="chapter-card"><div><span class="chapter-no">04 / 原生密码 · 消费品牌</span><h3>达人种草与产品内容</h3><p>参与小红书达人选题、Brief、脚本与初稿审核；在新品项目中负责卖点提炼、海报及公众号文案。</p><strong>真实笔记与Brief · 产品内容案例</strong></div><a href="#s10" aria-label="查看达人种草案例"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" alt="胶原炮面膜达人笔记历史首图" loading="lazy"></a></article>
 </div><p class="evidence-note">说明：数据为不同账号/项目的历史累计或截图时点结果，分别标注；不将团队或渠道成果归为个人独立产出。</p>
 </div><div class="slide-bottom"><span>孙岩萍 · 新媒体运营经理 / 2026</span><span>真实历史素材与项目记录 · 明确个人职责与团队成果</span></div></section><section class="slide" id="s3">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>03 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>03 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 01 / USER GROWTH</div><h2>酷狗音乐：把微博用户兴趣，<br/>连接到 APP 行为。</h2><p>2019.06—2024.01 · 新媒体运营经理；微博内容与活动独立负责，管理两名专员。</p></div>
 <div class="slide-body">
 <div class="metrics two"><div><strong>256 万人次</strong><span>整体引流项目历史累计</span></div><div><strong>21 万名</strong><span>客户端纯新增用户</span></div></div>
@@ -170,7 +229,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s4">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>04 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>04 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 01 / FAN CAMPAIGN</div><h2>胖汪发糖机：<br/>把粉丝打榜习惯做成固定活动。</h2><p>微博发布内容 → 参与入口 → 指定序号与福利 → 客户端承接。</p></div>
 <div class="slide-body">
 <div class="metrics two"><div><strong>8 万人次</strong><span>活动阶段累计参与</span></div><div><strong>2.2 万人次</strong><span>活动阶段拉新与促活合计</span></div></div>
@@ -189,7 +248,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s5">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>05 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>05 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 02 / CONTENT MATRIX</div><h2>同一个音乐功能，<br/>在不同平台讲不同的内容。</h2><p>酷狗多平台内容：微博独立运营；抖音、小红书、视频号以选题统筹与审核为主；公众号参与定位调整和内容运营。</p></div>
 <div class="slide-body">
 <div class="platform-grid">
@@ -213,7 +272,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s6">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>06 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>06 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 03 / CONTENT IP</div><h2>入梦晚安电台：<br/>让一次策划，变成持续的栏目。</h2><p>围绕睡前陪伴场景组织艺人声音、歌词分享、延伸祝愿和晚安收尾。</p></div>
 <div class="slide-body">
 <div class="metrics four"><div><strong>26 期</strong><span>已上线栏目</span></div><div><strong>84 万</strong><span>站内累计播放</span></div><div><strong>60,590</strong><span>栏目阶段拉新</span></div><div><strong>71,999</strong><span>栏目阶段拉活</span></div></div>
@@ -231,7 +290,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s7">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>07 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>07 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 04 / TEAM &amp; COLLABORATION</div><h2>管理 2 名专员，<br/>把平台分工落实到具体交付。</h2><p>酷狗新媒体岗位：微博由本人独立负责；其他平台根据分工统筹选题、审核脚本与内容，协调跨部门资源。</p></div>
 <div class="slide-body">
 <div class="role-grid">
@@ -245,7 +304,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 <div class="quote-bar compact"><strong>我承担的管理范围</strong><p>两名新媒体专员的日常内容分工、选题与脚本审核、交付协调；不把招聘、预算、绩效体系或视频剪辑写成已独立负责。</p></div>
 </div><div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s8">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>08 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>08 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 05 / VIDEO CHANNEL</div><h2>逆时光颜研究院<br/>微信视频号从 0 到 1。</h2><p>品牌科普号：为后续直播积累目标粉丝；本人负责内容定位、早期选题与原创脚本。</p></div>
 <div class="slide-body">
 <div class="metrics three"><div><strong>53</strong><span>条原创视频 · 项目留存数据</span></div><div><strong>3.1 万+</strong><span>账号累计粉丝</span></div><div><strong>60 万+</strong><span>账号累计转发与收藏</span></div></div>
@@ -262,7 +321,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
 </section><section class="slide" id="s9">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>09 / 13</span></div>
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>09 / 14</span></div>
 <div class="slide-heading"><div class="kicker">CASE 05 / CONTENT BREAKDOWN</div><h2>一条可被转发的故事，<br/>具体怎样组织？</h2><p>公开视频内容复盘：《平民妈妈击败亿万富豪》，发布于 2025-12-10；以下为后期结构分析。</p></div>
 <div class="slide-body">
 <div class="two-col"><div><div class="step-box"><div class="small-label">01 / 选题</div><h3>反差让用户停下来</h3><p>把“普通妈妈”和“亿万富豪”并列，利用身份与年龄差异形成好奇：普通人可以借鉴哪些生活习惯？</p></div>
@@ -275,40 +334,12 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 <div class="quote-bar compact"><strong>实际反馈</strong><p>公开页面在 2026-11-19 查阅时显示分享 10 万+；留存截图显示 6.9 万。两个时间口径不可混用。</p></div></div></div>
 </div>
 <div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
-</section><section class="slide" id="s10">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>10 / 13</span></div>
-<div class="slide-heading"><div class="kicker">CASE 06 / XIAOHONGSHU</div><h2>胶原炮面膜<br/>达人种草内容策划。</h2><p>胶原炮面膜 · 负责达人内容方向、选题、Brief、图文/视频脚本及初稿审核修改；展示公开笔记复盘。</p></div>
-<div class="slide-body">
-<div class="two-col"><div><div class="strategy-list"><article><span>DISCOVERY</span><h3>发现型内容</h3><p>用户在信息流偶然刷到：先以达人自己的职业、生活场景或真实困扰给出点击理由，不让首屏变成产品说明书。</p><p class="example">公开样本：金融人的护肤预算怎么分配？</p></article>
-<article><span>SEARCH</span><h3>搜索型内容</h3><p>用户带着问题搜索：标题写清产品名称和问题，首图展示真人与产品，第二张尽早回答“怎么用”。</p><p class="example">后期搜索型 Brief 示例：胶原炮面膜怎么用？</p></article></div>
-<div class="quote-bar compact"><strong>实际负责内容</strong><p>种草方向、达人 Brief、图文/视频脚本、内容重点及初稿修改建议。达人商务、预算、投放归因不纳入本人职责。</p></div><p class="micro"><a class="link" href="#s11" rel="noopener" target="_blank">查看下页笔记修改复盘 ↓</a></p></div>
-<div class="stack-media"><a class="media portrait" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" rel="noopener" target="_blank">
-<div class="media-frame"><img alt="发现型公开笔记首图" data-src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" decoding="async" loading="lazy"/>
-<div class="print-cover"><span>ORIGINAL WORK / CLICK TO OPEN</span><strong>发现型公开笔记首图</strong><img alt="扫码查看原始作品" class="evidence-qr" loading="eager" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAACBCAIAAABowk4HAAAEU0lEQVR4nO2d0Y0bMQxEc8HVkGZST6q6etJMmnD+ZCA0BuRw1rMB5n0FtlbSmRiGpCj74/F4fAtWvrs3EGKDG/B5/vXj56/NRH9+f/0zT+eV0YT1rUpdq/NWHQO2MforAGee6MBPbODns74EpFoBegTaB44C7OeMkbuFkQsCO+TWig78xAZ+XviiQ8c/ADqRyciVjZxSJ0AabbUD94lFB35iAz/IF3F0tM9ptuPKgFPilui8tSQ68BMb+NH7olG2Bd4avQLWqhvjKlpyF3SIDvzEBn6QL+LUxwl8VPAZZX/LJGv0OPeJRQd+YgM/L3yRqg7MnUAtAyT56uDvqm9xRAd+YgM/H9f1F40O7rmZO49ftw0V0YGf2MDP0xdd9//+KG9alpvAPFx3U2fCOmYUg0UHfmIDP88cjVPfaLAqRxtN2GHpypbND9GBn9jAz4u4iIM79uICCfnjYMwIroQeHfiJDfy0zvTl51ZLjwEGc8deo45ulY9NjnYjYgM/rdo1V0pahjF1HlXrUYWL5cBWR2tFB35iAz+t2nWHZfxQWRaXOkt0WJbZwVPxRTciNvDzona9vETfGczdM1X1Xo52KO+2qkQHfmIDPyhHWxZPRif4XITDFbKWN9S4MlF80a2JDfygc7RlvqMKNpb90qONVa4rSR2iAz+xgR/ybqz8lpYqJ+osCpZQZWR1G4mLbk1s4KfV6zgKG8CYuhY4TK+MAq1lKX60w2XqGh34iQ38tHoduWSkPj6qtHQm7KzeQXUtjqtNRQd+YgM/KC4CcB3LQLNL7zRaq5OjLWtKI6IDP7GBn9k5GsBS51Elj8vaNXfZ9hAd+IkN/KBeR/lpF3jqwKV44HGw6NKHgNVzpv+fERv4mfVdy1trAPKrFmBmVUbGdUBFB35iAz+z3wFRlVxGMRh3WKaqTdUx4JXOVivRgZ/YwE+rXgSQ9wV1Zl62W6saI1WX6aIDP7GBn9n3XXN9QcsKElh9dHlt5B8O8oCtDo4O/MQGftDvxnKlXXk7EPAqnSU6My8jQPAhdDLE6MBPbOBH/33XXDUGrLVsfKpwXqUzZpQhHqIDP7GBH5SjqRoRucRnxPIUb3n2x5WsD9GBn9jAz/YOyDIjU12C45oNRixvsoAx0YGf2MBP6ztDrjuUV9WTl3kTmGc0YeepSnTgJzbwQ35/kepYHCBvwOY6JFVBFBgTHfiJDfzofzdW1dhzsIRVqsGdp6IDP7GBn2ftetmsyNWcweP1WBwMXoYxnLfsdH13iA78xAZ+UH9Rh3f2Zquil+Wx12g/nQ8zOvATG/iZ3Uc7qHoLRx5D1Xs52mFFftslOvATG/ghv++6gypd4grdy7TrwFW8O9tI7fpGxAZ+9L7oDSfmnaClU8N5QyNBh+jAT2zgB/miZTkawDkTznVwl2255vNROnmIDvzEBn5m9/Q7jPyMvFNI1YDNdQtwb0UHfmIDP/r+ojAlOvATG/j5C/LlvXPcL223AAAAAElFTkSuQmCC"/><small class="qr-label">扫码或点击查看原图</small></div></div>
-<div class="media-caption"><b>发现型公开笔记首图</b><span>公开笔记复盘素材，并非本人原创发布稿</span><small>查看原图 ↗</small></div></a>
-<a class="media portrait" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" rel="noopener" target="_blank">
-<div class="media-frame"><img alt="搜索型公开笔记首图" data-src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" decoding="async" loading="lazy"/>
-<div class="print-cover"><span>ORIGINAL WORK / CLICK TO OPEN</span><strong>搜索型公开笔记首图</strong><img alt="扫码查看原始作品" class="evidence-qr" loading="eager" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAACBCAIAAABowk4HAAAEU0lEQVR4nO2dwW0dMQxE48A1pJnUk6pST5pJE85NPnAx4Qy5f9bAvFOQ1Ur7QQxBUaT89vHx8S1Y+e7+gBAbPID3868fP39NJvr75/d/56ljwFudR5U6c+dRHaN9M8WZJzrwExv4ea//BaRaWRdvXZ1yHWDMC7xKh7pWdOAnNvBz4YsOnQhn6y0q1OkEP3XmFzgl7bdHB35iAz/IF2kAXWtehYqUOq9vBWxbRAd+YgM/+74IoAUknTwPWAusDgYPAySK6MBPbOAH+SItEuiEQ5pXobZmnUedRV/wVnTgJzbwc+GLtkICarPWeatCxVfDzaPmCTtEB35iAz9v99UXaW5hK4lNfSHlXtYTR9GBn9jAz6cv0pROnVsBKO1rM1OHbhRanjz1RQ8iNvDD5Ys6nmfrsKzDliekllifJzrwExv4+fRF2j5leBquBRLUEp3gp+OvhrUBYEx04Cc28HORL9pqoxj6ma0942FYHd1BS31HB35iAz8X/WiUC9K2QuAki2JYD6nNM+xkSb7oicQGftA52noy56D1Zawnn4cnfcNH8UUPIjbwg+qLtC4tKkSh4gcKyqdR+aL1hHl04Cc28IPO9AHDlq77bvagoAIbwHA/GB34iQ38TPvROk7pvsCGav0YtrOBmcGYzqdGB35iAz8XZ/pUgLTVxNEZowUt2qJgdW1MzvQfTWzgB92lNkwsD4sMhzmc4TzaYaJWhxAd+IkN/Kz1o21FL1pJ4VaDW30EvnCrOCo68BMb+OHudaSiBa0yhxpMJY60fNGWRwVEB35iAz9cb+yw8vmwtScCE3YW1cYAtN8VHfiJDfyg3HWHqqyOK9PCGKqzbFhpCd4Cn6p5sOjAT2zg5yIuOrwyQNpiWAmgFXtTr1eiAz+xgR/Up18BfWRUBTXVj0a5RK0OgcqMaYAlogM/sYEf1Bs7bHZYd1wdV6aVQXbmGXqn1Bc9mtjAz/Tu/a20DAhs1uuUtmomO94p9UVfg9jAzzR3raVlOmjnelvVmJ1dpLYfrEQHfmIDP9z9RYf76q6HmWGtA4UqjhrWVVaiAz+xgZ9W7hocym/leIel1FrFUX3d0vIWHfiJDfxcxEUVkMwZOoo6RgtRwOCKltYe1meCJaIDP7GBn9a9jgftHI0aM1R6HXwY1l2v79oO0YGf2MAPFxdtZXTXe8SGBdidtahoigoOowM/sYGf/b8bq2l/OHNd4r4sE7X/Sj/a1yA28NOKizpokckwaUydqm8FSActuqtEB35iAz/oLrUO9+3RqHzR8BFY/b4w7xAd+IkN/HD3Fx2GzWtgMFXMDNASPsMWkg71B0YHfmIDP9O79zsMO8u07ZuWL9KOxqgDx+SLnkhs4GffF1FhjJYHBgLXXAcY3Nn0DSskowM/sYGfaW8seGtYX0R9hpZh1jJjVKK7s2h04Cc28IPuUqPoOJNhsSJYVGPre4YVktGBn9jAz359UWCJDvzEBn7+AXUanitYSQcWAAAAAElFTkSuQmCC"/><small class="qr-label">扫码或点击查看原图</small></div></div>
-<div class="media-caption"><b>搜索型公开笔记首图</b><span>公开笔记复盘素材，并非本人原创发布稿</span><small>查看原图 ↗</small></div></a></div></div>
-</div>
-<div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
-</section><section class="slide" id="s11">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>11 / 13</span></div>
-<div class="slide-heading"><div class="kicker">CASE 06 / EXECUTION DETAILS</div><h2>不是一句“优化种草”，<br/>而是每张图都要回答一个问题。</h2><p>公开笔记原图＋后期复盘建议；六图 Brief 为展示内容思路，不冒充历史实际投放稿。</p></div>
-<div class="slide-body">
-<div class="two-col"><div><h3>发现型：第二张先给护肤账本</h3><p>原笔记封面以“金融人护肤预算”为切口，但第二张是产品静物。建议把三类预算／护理选择放到第二张，再说明面膜为什么出现在阶段性护理中。</p>
-<div class="flowbar"><div><b>封面</b><span>预算悬念</span></div><i>→</i><div><b>第二张</b><span>护理分类</span></div><i>→</i><div><b>第三张</b><span>产品理由</span></div></div>
-<h3 class="mt">搜索型：六图 Brief 的信息顺序</h3><div class="brief-grid"><div><b>1 首图</b><span>产品与问题</span></div><div><b>2 对照</b><span>实物标出白膜/金膜</span></div><div><b>3 顺序</b><span>对应版本的晚间护理位置</span></div><div><b>4 用法</b><span>核对包装说明的实拍步骤</span></div><div><b>5 体验</b><span>达人真实肤感原话</span></div><div><b>6 收藏图</b><span>版本/组件/使用顺序</span></div></div></div>
-<div><a class="media portrait" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-slide-2.webp" rel="noopener" target="_blank">
-<div class="media-frame"><img alt="公开笔记的原第二张" data-src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-slide-2.webp" decoding="async" loading="lazy"/>
-<div class="print-cover"><span>ORIGINAL WORK / CLICK TO OPEN</span><strong>公开笔记的原第二张</strong><img alt="扫码查看原始作品" class="evidence-qr" loading="eager" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAACBCAIAAABowk4HAAAEVklEQVR4nO2d0W0cMQxEbcM1pJnU46pST5pJE5e/NWAuiJkh92YPmPcV3EqUzgQZiiL33h+Px1uw8uHeQIgObsDn8a9fv78mgv79/fNDDvIJJbA+qtS1NLa+RcMhJ3bgJzrw81k/oqy4scfm0dAprbuFxoMhzm34F4sd+IkO/Jz4ogPEmVBQQUsdTDklKrCp+xl+wUojMHbgJzrw0/kijSa0aD5pptdZyPGtOiVqq1qApBE78BMd+Nn3RUiwcV08U9eqG0P2TCWphsQO/EQHfjpfpFkflewdprUROVrw06xFbQwhduAnOvBz4ovW88C3/aRCuc36SCN24Cc68PP+hPoiylS1tPZw9evOXwixAz/RgZ9vX7T+//56/EAlc5C0NrIWIrCOoWKw2IGf6MDP9xmNch2anxneWw3di7YxZK1h8UPswE904Kc7o2lnq60qay0LPfSfT6jWrsQO/EQHfqAekOG9VSNwPZ7Rrr2oiu4tJ5kz2o2IDvycxEVbHRZI1SIlZ+serdnPVnTXUCXHDvxEB364uEjL2GgVy1pVkuYAt4542jeNHfiJDvyc5K6b7gmqw6LOauRUnln5TB3EqKAu+aLXIDrw0/XpU62jW72oVOjVtM1qDpBKQG1dJsYO/EQHfk7qiw7Wr8Y0hvXSyOBhKgmhmRU78BMd+IHeXzRs8hp2hGloiaOt/pe6jZzRbk104AeqLxr2diECm1nUxpBtIHLWa7ybT2IHfqIDP+IZrUIdoLTTTRVIbYPaz3WVADmj3ZHowE/XA9KgXe5rY4YpYiqI2ipPoogd+IkO/HjeMYswbNlYL2pqJCMVDskX3ZrowA/Up3+w7kwoOVs7XC+lrqunH+3FiA78QHHRVn2RZtdbDSNVMjWrTt+KymIHfqIDP9A7Zrc6Rhu06yqqsrFxiVrERSXNmsGxAz/RgZ/ujLZ13rmuWPFAq/q+LgdOjYkd+IkO/HC/A9Jka4c5nGGJTrPVRiAyS3M41AkxduAnOvDT1Rc1UJ5HM/DroJzbevVjJXbgJzrwA9UXaXlgaswW6111VbLW/5J+tFsTHfgR7/S1uOi6HPhWwrzZRjMGEdjMih34iQ78QL+PVm+gtg5ZW80XzZi6FvJIKyyvg5uNJXd9I6IDP9ydfn10gFhxwzCwGS6x1X2GSE5cdEeiAz/cPdqBVkHdoGWZkHs06tINOUVStUPImNiBn+jAz/7vxm4VESGztrI6w2vBZjAyK3bgJzrwA717H2FYz0M1nGprNYPXz5XUSTN24Cc68AO917FhWJv9zKImbdHhftKP9hpEB34ufGeIdpPVDN5qDxke+tZzZbEDP9GBHzF3jUAlapBCggakC2PYioLM0hrlYgd+ogM/+76IuvJGplNQOZz1jLdWmRA78BMd+IHqi9bZKvU50ORQ7bdUzEM50tiBn+jAD1R3TaE1k9ZHWrZq2OW6tQ3qUezAT3TgZ7++KLDEDvxEB37+A4dgugPoQqBHAAAAAElFTkSuQmCC"/><small class="qr-label">扫码或点击查看原图</small></div></div>
-<div class="media-caption"><b>公开笔记的原第二张</b><span>后期复盘时对照的原图</span><small>查看原图 ↗</small></div></a>
-<div class="quote-bar compact"><strong>审稿检查</strong><p>封面承诺和第二张是否对应？产品出现是否有理由？结尾有没有值得收藏的使用信息？</p></div>
-<p class="micro">复盘原样例：<a class="link" href="https://www.xiaohongshu.com/explore/6a2792760000000007029ba3" rel="noopener" target="_blank">查看公开笔记 A ↗</a> · <a class="link" href="https://www.xiaohongshu.com/explore/697c6039000000000a031c61" rel="noopener" target="_blank">查看公开笔记 B ↗</a></p></div></div>
-</div>
-<div class="slide-bottom"><span>新媒体运营经理 · 项目作品集 / 2026</span><span>真实项目与公开作品精选 · 项目成果与个人职责分别说明</span></div>
-</section><section class="slide" id="s12">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>12 / 13</span></div>
+</section><section class="slide collagen-showcase" id="s10"><div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>10 / 14</span></div><div class="slide-heading"><div class="kicker">CASE 06 / XIAOHONGSHU</div><h2>胶原炮面膜｜小红书达人种草内容策划</h2><p>负责种草方向、达人选题、Brief、图文／视频脚本、初稿审核与修改。</p></div><div class="slide-body"><div class="collagen-overview"><article class="collagen-note-card"><a class="collagen-image" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" target="_blank" rel="noopener" aria-label="放大查看雯柚甜公开笔记原首图"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" alt="雯柚甜公开笔记原首图" loading="eager" decoding="async"></a><div class="collagen-note-copy"><div class="collagen-tag">01 / 发现型</div><h3>雯柚甜</h3><p>金融人护肤预算</p><div class="collagen-stats">254 赞 · 111 收藏 · 46 评论</div><div class="collagen-links"><a href="https://www.xiaohongshu.com/explore/6a2792760000000007029ba3" target="_blank" rel="noopener">原笔记 ↗</a><a href="#s11">查看复盘 ↓</a></div></div></article><article class="collagen-note-card"><a class="collagen-image" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" target="_blank" rel="noopener" aria-label="放大查看傲娇年世兰公开笔记原首图"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" alt="傲娇年世兰公开笔记原首图" loading="eager" decoding="async"></a><div class="collagen-note-copy"><div class="collagen-tag">02 / 搜索型</div><h3>傲娇年世兰</h3><p>真人、包装与膜布同屏</p><div class="collagen-stats">479 赞 · 170 收藏 · 17 评论</div><div class="collagen-links"><a href="https://www.xiaohongshu.com/explore/697c6039000000000a031c61" target="_blank" rel="noopener">原笔记 ↗</a><a href="#s12">查看复盘 ↓</a></div></div></article></div><p class="collagen-footnote">公开笔记复盘样本 · 互动数据为 2026.11.19 查阅记录，非个人投放业绩。</p></div><div class="slide-bottom"><span>原生密码 · 胶原炮面膜</span><span>真实公开笔记 / 内容复盘</span></div></section><section class="slide collagen-showcase" id="s11"><div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>11 / 14</span></div><div class="slide-heading"><div class="kicker">CASE 06 / NOTE 01</div><h2>封面讲护肤预算，<br>第二张就应该给出答案。</h2><p>雯柚甜 · 发现型笔记复盘</p></div><div class="slide-body"><div class="collagen-compare">
+<figure class="collagen-panel"><figcaption><span>01 / 原首图</span><strong>金融人的护肤预算</strong></figcaption><a class="collagen-image" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" target="_blank" rel="noopener" aria-label="放大查看雯柚甜原首图"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-cover.webp" alt="雯柚甜原首图" loading="eager" decoding="async"></a></figure>
+<figure class="collagen-panel"><figcaption><span>02 / 原第二张</span><strong>直接展示产品静物</strong></figcaption><a class="collagen-image" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-slide-2.webp" target="_blank" rel="noopener" aria-label="放大查看雯柚甜原第二张产品静物"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/budget-slide-2.webp" alt="雯柚甜原第二张产品静物" loading="eager" decoding="async"></a></figure>
+<figure class="collagen-panel revised"><figcaption><span>03 / 复盘改稿示意</span><strong>把护理账本前移</strong></figcaption><div class="ledger-visual" role="img" aria-label="护肤账本改稿示意，分为日常基础护理、阶段性护理和额外预算"><div class="ledger-kicker">SKINCARE BUDGET / 改稿示意</div><div class="ledger-title">我的护肤账本</div><p>护理预算分在哪几步？</p><div class="ledger-row"><i>01</i><div><b>日常基础护理</b><small>每天会用到的几步</small></div></div><div class="ledger-row selected"><i>02</i><div><b>阶段性护理</b><small>胶原炮面膜放在这里</small></div></div><div class="ledger-row"><i>03</i><div><b>额外预算</b><small>先看已有产品，再决定是否添购</small></div></div></div></figure>
+</div><div class="collagen-takeaway"><b>修改建议</b><span>原第二张直接展示产品，建议先呈现护理账本，再用下一张解释面膜为什么出现在护理计划中。</span><a href="https://www.xiaohongshu.com/explore/6a2792760000000007029ba3" target="_blank" rel="noopener">原笔记 ↗</a></div></div><div class="slide-bottom"><span>公开笔记 · 254 赞 / 111 收藏 / 46 评论（2026.11.19）</span><span>右图为后期复盘示意，非已发布改稿</span></div></section><section class="slide collagen-showcase" id="s12"><div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>12 / 14</span></div><div class="slide-heading"><div class="kicker">CASE 06 / NOTE 02</div><h2>用户想知道怎么用，<br>就先回答怎么用。</h2><p>傲娇年世兰 · 公开笔记样本与搜索型六图 Brief 复盘方案</p></div><div class="slide-body"><div class="collagen-search"><figure class="collagen-panel search-original"><figcaption><span>公开笔记原首图</span><strong>真人、包装、膜布同屏</strong></figcaption><a class="collagen-image" href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" target="_blank" rel="noopener" aria-label="放大查看傲娇年世兰公开笔记原首图"><img src="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/assets/collagen/review-cover.webp" alt="傲娇年世兰公开笔记原首图" loading="eager" decoding="async"></a><a class="note-link" href="https://www.xiaohongshu.com/explore/697c6039000000000a031c61" target="_blank" rel="noopener">查看原笔记 ↗</a></figure><div class="collagen-brief-panel"><div class="collagen-brief-heading"><h3>原生密码胶原炮面膜怎么用？</h3><span>六图 Brief / 复盘方案</span></div><div class="collagen-storyboard"><article class="storyboard-card"><span class="story-no">01</span><div class="story-art cover" aria-hidden="true"><div class="mini-person"></div><div class="mini-pack"></div></div><b>认产品</b><small>真人＋对应包装与膜布</small></article><article class="storyboard-card"><span class="story-no">02</span><div class="story-art compare" aria-hidden="true"><div class="mini-sheet"></div><div class="mini-sheet gold"></div></div><b>辨组件</b><small>实物标出白膜／金膜</small></article><article class="storyboard-card"><span class="story-no">03</span><div class="story-art order" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></div><b>看顺序</b><small>对应版本的护理位置</small></article><article class="storyboard-card"><span class="story-no">04</span><div class="story-art steps" aria-hidden="true"><i>1</i><i>2</i><i>3</i></div><b>看步骤</b><small>按包装说明实拍</small></article><article class="storyboard-card"><span class="story-no">05</span><div class="story-art experience" aria-hidden="true"><div class="mini-face"></div><div class="mini-quote">“ ”</div></div><b>看体验</b><small>真实肤感与贴合细节</small></article><article class="storyboard-card"><span class="story-no">06</span><div class="story-art check" aria-hidden="true"><div class="mini-check">✓<span></span></div><div class="mini-check">✓<span></span></div><div class="mini-check">✓<span></span></div></div><b>留速查卡</b><small>版本、组件、使用顺序</small></article></div></div></div><p class="collagen-footnote">六图为后期内容复盘方案示意，不是该达人的历史发布稿；使用方法以对应产品包装说明为准。</p></div><div class="slide-bottom"><span>公开笔记 · 479 赞 / 170 收藏 / 17 评论（2026.11.19）</span><span>真实首图 / 后期 Brief 示意</span></div></section><section class="slide" id="s13">
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>13 / 14</span></div>
 <div class="slide-heading"><div class="kicker">ADDITIONAL WORK / CROSS-CATEGORY CONTENT</div><h2>从音乐用户活动，延伸到护肤新品内容。</h2><p>补充证明跨品类表达能力：负责卖点、内容结构与文案；产品研发、海报视觉及拍摄剪辑由对应团队完成。</p></div>
 <div class="slide-body">
 <div class="product-grid">
@@ -318,8 +349,8 @@ a{color:inherit;text-decoration:none}button{font:inherit}.app-header{position:st
 
 <article class="product-card"><a href="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/cleanser/core-finished.jpg" target="_blank" rel="noopener" aria-label="放大查看逆时光洁颜霜历史成品海报"><img src="https://yanpingsun.github.io/yanping-portfolio-site/portfolio-content/skincare-wireframes/cleanser/core-finished.jpg" alt="逆时光洁颜霜核心主张历史成品海报" loading="lazy"></a><div class="product-card-copy"><span>04 / 逆时光洁颜霜</span><h3>洗得净，洗后不紧绷</h3><p>从清洁力和洗后感受两项核心关注切入，提炼产品主张，完成海报文案、信息层级与上新文章内容。</p><b>上新首月GMV 80万+</b><a href="https://yanpingsun.github.io/yanping-portfolio-site/preview/v3/?v=3.0.19#/project/clean" target="_blank" rel="noopener">查看完整项目 ↗</a></div></article></div>
 <p class="micro">四项GMV均为产品上新首月的项目/渠道整体成绩，不对单条内容、单个人作销售归因。上述图片为实际内容成品，设计执行由设计师完成。</p>
-</div><div class="slide-bottom"><span>孙岩萍 · 新媒体运营经理 / 2026</span><span>真实历史素材与项目记录 · 明确个人职责与团队成果</span></div></section><section class="slide ending" id="s13">
-<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>13 / 13</span></div>
+</div><div class="slide-bottom"><span>孙岩萍 · 新媒体运营经理 / 2026</span><span>真实历史素材与项目记录 · 明确个人职责与团队成果</span></div></section><section class="slide ending" id="s14">
+<div class="slide-top"><span>YANPING SUN / NEW MEDIA PORTFOLIO</span><span>14 / 14</span></div>
 <div class="ending-body"><p class="kicker">THANK YOU / LET'S CONNECT</p><h2>让内容被看见，<br><em>也让用户愿意参与。</em></h2><p class="ending-intro">希望继续在新媒体运营、用户增长活动、跨平台内容和团队协作中发挥经验。音乐平台的账号与增长项目，让我理解内容如何连接业务；护肤品牌的科普号与达人内容经历，让我能把这些经验带到新的用户场景。</p>
 <div class="ending-contact"><div><span>孙岩萍</span><strong>新媒体运营经理 / 内容营销经理</strong><a class="contact-mail" href="mailto:beibiduo@163.com">beibiduo@163.com ↗</a></div><div class="ending-links"><a href="#s3">回看酷狗用户增长案例 ↑</a><a href="#s8">回看视频号案例 ↑</a><a href="#s10">回看小红书种草案例 ↑</a></div></div>
 <p class="ending-disclaimer">项目数据按实际历史统计口径呈现。个人主导、团队协作与后期复盘内容分开说明，全部图片和作品入口均指向既有历史素材。</p>
