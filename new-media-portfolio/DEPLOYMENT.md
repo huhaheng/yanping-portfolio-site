@@ -1,13 +1,24 @@
 # 新媒体作品集独立部署
 
-更新日期：2026-11-25。目标域名为 `https://media.yanpingsun.cn/`；云端项目、DNS 和 HTTPS 尚待腾讯云登录后配置，不能将本地构建或 GitHub 推送视为已上线。
+更新日期：2026-11-25。正式网站为 [media.yanpingsun.cn](https://media.yanpingsun.cn/)，独立项目和 DNS 已生效，免费托管 HTTPS 证书已部署。强制 HTTPS 已启用，301 跳转已保存并重新打开核对。
 
 ## 源码与网站分工
 
 - 内容协作源仓库：`yanpingsun/yanping-portfolio-site`，`main`。
 - 新媒体作品集入口：`new-media-portfolio/index.html`，当前为 V2.2、14 个纵向页面，胶原炮三页位于第10—12页，第13页保留洁颜霜等四张项目封面。最新内容提交 `9c82e2dc19355a210b3412402f1889d625d56fc9`。
 - 现有产品内容作品集：`https://yanpingsun.cn/`，源码 `preview/v3/`，仍为 3.0.19，继续使用原 EdgeOne 项目 `yanping-portfolio-overseas`。
-- 新媒体网站另建独立 EdgeOne 项目，生产分支为 `main`，**项目根目录必须设置为 `new-media-portfolio`**。
+- 新媒体网站已另建独立 EdgeOne 项目，生产分支为 `main`，**项目根目录为 `new-media-portfolio`**。
+
+| 实际托管配置 | 值 |
+| --- | --- |
+| 项目 | `yanping-media-portfolio`，ID `makers-ovl8xngj1can` |
+| 控制台 | [项目概览](https://console.cloud.tencent.com/edgeone/makers/project/makers-ovl8xngj1can/index) |
+| 部署仓库 | `huhaheng/yanping-portfolio-site` |
+| 生产分支与根目录 | `main` / `new-media-portfolio` |
+| 首次部署 | `dpezul1lxtic`，提交 `89a035bdd0643a56c3858cf6d778767d22a93a47`，成功 |
+| 默认项目域名 | `https://yanping-media-portfolio-eqpdkcag.edgeone.dev/` |
+| 已验证的内容更新 | `388583735bc4d2f0b451918d0aa336691271ea76`，V2.2，副本更新后自动发布 |
+| 套餐与区域 | 免费，全球可用区（不含中国大陆） |
 
 ## 构建与路径
 
@@ -43,7 +54,13 @@ python3 -m http.server 8766 --directory new-media-portfolio/dist-edgeone
 
 ## 云端绑定
 
-沿用本人腾讯云账号，以独立项目绑定 `media.yanpingsun.cn` 的生产环境。先确认生产部署成功，再按平台实际生成的值添加 DNSPod 的 `media` CNAME；如需归属验证，只添加对应 TXT。申请免费的托管 HTTPS 证书，确认已部署并启用强制 HTTPS。
+新域名已绑定独立项目的生产环境。DNSPod 已保存以下记录，Google 与阿里 DNS 均解析到相同 CNAME 和公开服务 IP：
+
+| 主机记录 | 类型 | 线路 | 记录值 | TTL |
+| --- | --- | --- | --- | --- |
+| `media` | CNAME | 默认 | `media.yanpingsun.cn.pages.dnsoe5.com` | 600 秒 |
+
+父域名归属验证已通过，此次无需新增 TXT。原 `@` CNAME `yanpingsun.cn.pages.dnsoe6.com`、归属验证 TXT 和 NS 记录均保留。新站使用免费托管单域名证书和自动验证。证书入口为“域名管理 → media 域名 HTTPS 配置列 → 边缘 HTTPS 证书”；不要重复申请或改动原产品站证书。强制 HTTPS 的 301 跳转已保存并重新打开确认；独立浏览器访问 HTTPS 无证书警告，HTTP 入口跳转到同一 HTTPS 作品集。证书到期日和续期详情未在当前配置抽屉显示，未凭估计填写。
 
 不修改现有 `@` 根 CNAME、原产品网站绑定、证书、项目根目录或构建命令。新网站域名配置不需要重新购买 `yanpingsun.cn`。
 
@@ -51,7 +68,7 @@ python3 -m http.server 8766 --directory new-media-portfolio/dist-edgeone
 
 作品内容继续只在原仓库 `new-media-portfolio/` 维护，通过任务分支和 PR 合入 `main`。共享原图需要保留作者所引用的仓库路径。每次发布先运行独立构建，并检查14页、封面、内部导航、原图和手机尺寸。
 
-是否能直接连接原仓库自动部署，待云端仓库授权列表核对。若仍使用 `huhaheng/yanping-portfolio-site` 部署副本，原仓库合入后还需先快进同步副本；副本更新才会触发 EdgeOne 自动构建，不能把这一步称作原仓库到网站全链路自动更新。
+实际 Git 接入使用 `huhaheng/yanping-portfolio-site` 部署副本。副本 `main` 更新后由 EdgeOne 自动构建发布；原协作仓库合入后仍需先快进同步副本。已通过将 `3885837` 同步到副本后观察正式域名由13页更新为14页，验证平台自动构建发布。尚未添加原仓库到副本的自动同步，不能将当前方式称为全链路自动更新。
 
 ```sh
 set -e
@@ -65,9 +82,11 @@ git push deploy refs/remotes/origin/main:refs/heads/main
 
 ## 验收与回退
 
-独立浏览器检查桌面与手机尺寸下全部14页，确认第10—12页胶原炮案例、第13页四张项目封面、图片延迟加载、原图、顶部章节导航及四个产品深度链接。源 HTML 与产物的文案、CSS、JavaScript、结构和内嵌二维码逐项保持一致；图片复制件按原文件校验。
+2026-11-25 在本地及正式域名分别以 320、390、1280px 检查最新 V2.2 的14页，共各42组；所有页面可见且无横向溢出，16张图片及原图均加载成功、返回图片 MIME 并逐字节匹配原件。第10—12页胶原炮三页、第13页洁颜霜第四张封面、全部内部锚点及顶部章节导航通过。源 HTML 与产物的文案、CSS、JavaScript、结构和内嵌二维码保持一致。
 
-云端上线后记录实际项目 ID、仓库、分支、根目录、域名 DNS 和证书状态，再核对公开首页与 `deployment-info.json`。同时比较 `yanpingsun.cn` 的首页和运行文件，确认仍为原产品版。
+正式域名首页和 `deployment-info.json` 均与构建产物一致，源 HTML SHA-256 为 `31cf00e25112b801c664ce1bd866897d281ef1c6a33eac238223569da12dc778`，部署首页 SHA-256 为 `714605cf9e8a69554f2ae1e76d81877203711d1dcc4a1d6976e2c7d9e1c7b970`。
+
+四个产品深度案例在手机尺寸下实际打开正常；`yanpingsun.cn` 的六个运行文件仍与保留的 3.0.19 源码逐字节一致。原站首页 SHA-256 仍为 `b263717c554d8424f0b9828ecf9dc2d24d3e260823fddecb8b1757d45541ea6f`。新域名首次生效期间出现过短暂解析和403响应，后续正式域名的完整验收已通过；未为此修改网页内容或设计。
 
 浏览器尺寸模拟不能代替国内手机流量、宽带和真机 Safari；外部小红书笔记可能受平台登录或访问策略影响，不将链接地址正确等同于所有网络均可直接阅读。
 
